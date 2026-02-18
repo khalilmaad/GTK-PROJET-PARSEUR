@@ -1,0 +1,51 @@
+#ifndef INIT_FUNC_H_INCLUDED
+#define INIT_FUNC_H_INCLUDED
+
+typedef struct wd Widget;
+
+void init_fenetre(Widget*);
+
+void init_action_bar(Widget*);
+
+void init_box(Widget*);
+
+void init_button(Widget*);
+
+void init_calendrier(Widget*);
+
+void init_check_button(Widget*);
+
+void init_entry(Widget*);
+
+void init_searchentry(Widget*);
+
+void init_frame(Widget*);
+
+void init_header_bar(Widget*);
+
+void init_image(Widget*);
+
+void init_label(Widget*);
+
+void init_overlay(Widget*);
+
+void init_scrollbar(Widget*);
+
+void init_buttonradio(Widget*);
+
+void init_menubar(Widget*);
+
+void init_menu(Widget* obj);
+
+void init_menuitem(Widget* obj);
+
+void init_grid(Widget* obj);
+
+void init_paned(Widget* obj);
+
+void init_notebook(Widget* obj);
+
+void init_signal(Widget*);
+
+
+#endif // INIT_FUNC_H_INCLUDED

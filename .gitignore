@@ -1,0 +1,11 @@
+*.o
+*.out
+*.exe
+*.cbp
+*.depend
+*.layout
+*.txt
+build/
+image/
+bin/
+obj/
