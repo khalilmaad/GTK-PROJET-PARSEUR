@@ -10,7 +10,8 @@ void init_label(Widget* obj)
     Attributs tableau_attribut[] =
     {
         {"texte",             strdup("")},
-        {"alignement_texte",  strdup("gauche")}
+        {"alignement_texte",  strdup("gauche")},
+        {"couleur_fond",  strdup("")}
     };
 
     obj->Nbre_Attribut = sizeof(tableau_attribut) / sizeof(tableau_attribut[0]);

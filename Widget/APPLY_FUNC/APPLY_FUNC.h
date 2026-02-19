@@ -37,4 +37,6 @@ void apply_attribut_paned(Widget*);
 
 void apply_attribut_notebook(Widget* obj);
 
+void apply_attribut_stack(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED

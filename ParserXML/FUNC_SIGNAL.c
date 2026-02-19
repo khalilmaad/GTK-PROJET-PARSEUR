@@ -54,6 +54,15 @@ void afficher(GtkWidget* widget,gpointer data)
     printf("\nafficher\n");
 }
 
+void connecte_stack_with_stackswitcher(GtkWidget* widget,gpointer data)
+{
+    Widget* obj = (Widget*)data;
+
+    gtk_stack_switcher_set_stack(GTK_STACK_SWITCHER(widget),
+                                  GTK_STACK(obj->Widget_Ptr));
+    printf("\nconnexion reussi\n");
+}
+
 void cacher(GtkWidget* widget,gpointer data)
 {
     Widget* obj = (Widget*)data;

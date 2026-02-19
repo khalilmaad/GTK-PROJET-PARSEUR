@@ -25,7 +25,7 @@ void init_box(Widget* obj)
         {"box_shadow",           strdup("")},
     };
 
-    char* tableau_enfant[] = {"grid","searchentry","entry","scrollbar","overlay","menuitem","menubar","menu","label","image",
+    char* tableau_enfant[] = {"notebook","stack","stackswitcher","grid","searchentry","entry","scrollbar","overlay","menuitem","menubar","menu","label","image",
                     "headerbar","frame","checkbutton","calendrier","buttonradio","button","box","actionbar","signal"};
 
     obj->Nbre_Attribut = sizeof(tableau_attribut) / sizeof(tableau_attribut[0]);

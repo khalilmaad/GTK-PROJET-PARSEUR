@@ -29,6 +29,8 @@ static struct
     {"grid", init_grid},
     {"paned", init_paned},
     {"notebook", init_notebook},
+    {"stack", init_stack},
+    {"stackswitcher", init_stackswitcher},
     {"signal", init_signal},
 };
 

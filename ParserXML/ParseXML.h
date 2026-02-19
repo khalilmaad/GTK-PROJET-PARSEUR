@@ -82,6 +82,8 @@ void detruire(GtkWidget*, gpointer);
 
 void modifier(GtkWidget*, gpointer);
 
+void connecte_stack_with_stackswitcher(GtkWidget*,gpointer);
+
 
 gboolean afficher_avec_event(GtkWidget*,GdkEvent*, gpointer);
 

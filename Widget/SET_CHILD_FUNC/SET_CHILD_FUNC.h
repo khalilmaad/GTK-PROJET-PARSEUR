@@ -27,5 +27,7 @@ void set_child_paned(Widget* pere,Widget* fils);
 
 void set_child_notebook( Widget* pere, Widget* fils);
 
+void set_child_stack( Widget* pere, Widget* fils);
+
 
 #endif // SET_CHILD_FUNC_H_INCLUDED

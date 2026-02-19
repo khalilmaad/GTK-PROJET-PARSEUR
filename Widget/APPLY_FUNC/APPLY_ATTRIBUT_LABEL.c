@@ -41,4 +41,10 @@ void apply_attribut_label(Widget* obj)
             }
         }
     }
+
+    const char* couleur_fond = get_attribut("couleur_fond", obj);
+    if (couleur_fond != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-background-color",couleur_fond);
+    }
 }

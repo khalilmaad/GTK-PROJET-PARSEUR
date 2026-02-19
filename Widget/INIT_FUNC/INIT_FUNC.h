@@ -45,6 +45,10 @@ void init_paned(Widget* obj);
 
 void init_notebook(Widget* obj);
 
+void init_stack(Widget* obj);
+
+void init_stackswitcher(Widget* obj);
+
 void init_signal(Widget*);
 
 
