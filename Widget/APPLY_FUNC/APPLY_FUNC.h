@@ -39,4 +39,8 @@ void apply_attribut_notebook(Widget* obj);
 
 void apply_attribut_stack(Widget* obj);
 
+void apply_attribut_expander(Widget* obj);
+
+void apply_attribut_layout(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED

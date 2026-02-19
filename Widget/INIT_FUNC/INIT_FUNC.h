@@ -49,6 +49,12 @@ void init_stack(Widget* obj);
 
 void init_stackswitcher(Widget* obj);
 
+void init_expander(Widget* obj);
+
+void init_fixed(Widget* obj);
+
+void init_layout(Widget* obj);
+
 void init_signal(Widget*);
 
 

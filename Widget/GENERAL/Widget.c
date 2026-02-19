@@ -31,6 +31,9 @@ static struct
     {"notebook", init_notebook},
     {"stack", init_stack},
     {"stackswitcher", init_stackswitcher},
+    {"expander", init_expander},
+    {"fixed", init_fixed},
+    {"layout", init_layout},
     {"signal", init_signal},
 };
 
@@ -56,6 +59,8 @@ Widget*  init_func_widget(char* nom)
         {"etendre",strdup("")},    //TRUE /
         {"pos_colonne",strdup("")},
         {"pos_ligne",strdup("")},
+        {"pos_x",strdup("")},
+        {"pos_y",strdup("")},
         {"nombre_colonne",strdup("")},
         {"nombre_ligne",strdup("")},
         {"page_titre",strdup("Nouvelle page")},
