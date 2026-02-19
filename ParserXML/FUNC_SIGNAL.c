@@ -12,6 +12,34 @@ gboolean afficher_avec_event(GtkWidget* widget,GdkEvent *event,gpointer data)
     return TRUE;
 }
 
+gboolean afficher_avec_event_animation(GtkWidget* widget,GdkEvent *event,gpointer data)
+{
+    Widget* obj = (Widget*)data;
+    gtk_revealer_set_reveal_child(GTK_REVEALER(obj->Widget_Ptr), TRUE);
+    printf("\nafficher_avec_event_animation\n");
+
+    return TRUE;
+}
+
+gboolean cacher_avec_event_animation(GtkWidget* widget,GdkEvent *event,gpointer data)
+{
+    Widget* obj = (Widget*)data;
+    gtk_revealer_set_reveal_child(GTK_REVEALER(obj->Widget_Ptr), FALSE);
+    printf("\ncacher_avec_event_animation\n");
+
+    return TRUE;
+}
+
+gboolean afficher_cacher_avec_event_animation(GtkWidget* widget,GdkEvent *event,gpointer data)
+{
+    Widget* obj = (Widget*)data;
+    gboolean state = gtk_revealer_get_reveal_child(GTK_REVEALER(obj->Widget_Ptr));
+    gtk_revealer_set_reveal_child(GTK_REVEALER(obj->Widget_Ptr), !state);
+    printf("\nafficher_cacher_avec_event_animation\n");
+
+    return TRUE;
+}
+
 gboolean cacher_avec_event(GtkWidget* widget,GdkEvent *event,gpointer data)
 {
     Widget* obj = (Widget*)data;
@@ -52,6 +80,28 @@ void afficher(GtkWidget* widget,gpointer data)
     Widget* obj = (Widget*)data;
     gtk_widget_show_all(obj->Widget_Ptr);
     printf("\nafficher\n");
+}
+
+void cacher_avec_animation(GtkWidget* widget,gpointer data)
+{
+    Widget* obj = (Widget*)data;
+    gtk_revealer_set_reveal_child(GTK_REVEALER(obj->Widget_Ptr), FALSE);
+    printf("\ncacher_avec_animation\n");
+}
+
+void afficher_avec_animation(GtkWidget* widget,gpointer data)
+{
+    Widget* obj = (Widget*)data;
+    gtk_revealer_set_reveal_child(GTK_REVEALER(obj->Widget_Ptr), TRUE);
+    printf("\nafficher_avec_animation\n");
+}
+
+void afficher_cacher_avec_animation(GtkWidget* widget,gpointer data)
+{
+    Widget* obj = (Widget*)data;
+    gboolean state = gtk_revealer_get_reveal_child(GTK_REVEALER(obj->Widget_Ptr));
+    gtk_revealer_set_reveal_child(GTK_REVEALER(obj->Widget_Ptr), !state);
+    printf("\nafficher_cacher_avec_animation\n");
 }
 
 void connecte_stack_with_stackswitcher(GtkWidget* widget,gpointer data)

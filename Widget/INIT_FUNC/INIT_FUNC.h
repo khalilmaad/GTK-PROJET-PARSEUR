@@ -55,6 +55,8 @@ void init_fixed(Widget* obj);
 
 void init_layout(Widget* obj);
 
+void init_revealer(Widget* obj);
+
 void init_signal(Widget*);
 
 

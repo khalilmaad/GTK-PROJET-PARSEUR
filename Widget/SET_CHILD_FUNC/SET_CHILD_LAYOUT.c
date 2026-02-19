@@ -14,7 +14,7 @@ void set_child_layout(Widget* pere,Widget* fils)
     if (pos_x && pos_y)
     {
 
-        gtk_layout_put(GTK_FIXED(pere->Widget_Ptr), fils->Widget_Ptr,atoi(pos_x),atoi(pos_y));
+        gtk_layout_put(GTK_LAYOUT(pere->Widget_Ptr), fils->Widget_Ptr,atoi(pos_x),atoi(pos_y));
     }
     else
     {

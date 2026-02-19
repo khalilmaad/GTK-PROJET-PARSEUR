@@ -34,6 +34,7 @@ static struct
     {"expander", init_expander},
     {"fixed", init_fixed},
     {"layout", init_layout},
+    {"revealer", init_revealer},
     {"signal", init_signal},
 };
 

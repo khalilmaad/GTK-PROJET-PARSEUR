@@ -43,4 +43,6 @@ void apply_attribut_expander(Widget* obj);
 
 void apply_attribut_layout(Widget* obj);
 
+void apply_attribut_revealer(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED

@@ -82,6 +82,12 @@ void detruire(GtkWidget*, gpointer);
 
 void modifier(GtkWidget*, gpointer);
 
+void cacher_avec_animation(GtkWidget* widget,gpointer data);
+
+void afficher_avec_animation(GtkWidget* widget,gpointer data);
+
+void afficher_cacher_avec_animation(GtkWidget* widget,gpointer data);
+
 void connecte_stack_with_stackswitcher(GtkWidget*,gpointer);
 
 
@@ -92,5 +98,11 @@ gboolean cacher_avec_event(GtkWidget*,GdkEvent*, gpointer);
 gboolean detruire_avec_event(GtkWidget*,GdkEvent*, gpointer);
 
 gboolean modifier_avec_event(GtkWidget*,GdkEvent*, gpointer);
+
+gboolean afficher_avec_event_animation(GtkWidget* widget,GdkEvent *event,gpointer data);
+
+gboolean cacher_avec_event_animation(GtkWidget* widget,GdkEvent *event,gpointer data);
+
+gboolean afficher_cacher_avec_event_animation(GtkWidget* widget,GdkEvent *event,gpointer data);
 
 #endif // PARSEXML_H_INCLUDED

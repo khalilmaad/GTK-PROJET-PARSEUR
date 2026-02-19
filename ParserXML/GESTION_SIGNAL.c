@@ -100,7 +100,8 @@ _Bool Controle_attribut_signal(Widget* signal,_Bool* event)
 fonction_exe:
 
     const char* fonction_utilise = get_attribut("fonction",signal);
-    char* fonction_attendu[] = {"afficher","cacher","detruire","modifier","connexion_stackswitcher"};
+    char* fonction_attendu[] = {"afficher","cacher","detruire","modifier","connexion_stackswitcher","afficher_avec_animation",
+    "cacher_avec_animation","afficher_cacher_avec_animation"};
     int nb_fonction = sizeof(fonction_attendu) / sizeof(fonction_attendu[0]);
     if(!fonction_utilise)
     {
@@ -133,7 +134,10 @@ Gtk_Callback get_fonction(Widget* signal)
     if(!compare(fonction,"afficher")) return afficher;
     else if(!compare(fonction,"connexion_stackswitcher")) return connecte_stack_with_stackswitcher;
     else if(!compare(fonction,"cacher")) return cacher;
-    else if(!compare(fonction,"detruire")) return detruire;
+    else if(!compare(fonction,"afficher_avec_animation")) return afficher_avec_animation;
+    else if(!compare(fonction,"cacher_avec_animation")) return cacher_avec_animation;
+    else if(!compare(fonction,"afficher_cacher_avec_animation")) return afficher_cacher_avec_animation;
+    else if(!compare(fonction,"detruire")) return afficher_cacher_avec_animation;
     else if(!compare(fonction,"modifier")) return modifier;
 
     return NULL;
@@ -145,6 +149,9 @@ Gtk_Callback_with_event get_fonction_avec_event(Widget* signal)
     const char* fonction = get_attribut("fonction",signal);
     if(!compare(fonction,"afficher")) return afficher_avec_event;
     else if(!compare(fonction,"cacher")) return cacher_avec_event;
+    else if(!compare(fonction,"afficher_avec_animation")) return afficher_avec_event_animation;
+    else if(!compare(fonction,"cacher_avec_animation")) return cacher_avec_event_animation;
+    else if(!compare(fonction,"afficher_cacher_avec_animation")) return afficher_cacher_avec_event_animation;
     else if(!compare(fonction,"detruire")) return detruire_avec_event;
     else if(!compare(fonction,"modifier")) return modifier_avec_event;
 
