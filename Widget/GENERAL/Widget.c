@@ -35,6 +35,9 @@ static struct
     {"fixed", init_fixed},
     {"layout", init_layout},
     {"revealer", init_revealer},
+    {"listbox", init_listbox},
+    {"flowbox", init_flowbox},
+    {"buttonbox", init_buttonbox},
     {"signal", init_signal},
 };
 

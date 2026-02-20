@@ -4,28 +4,16 @@
 #include "../GENERAL/Widget.h"
 
 
-void init_box(Widget* obj)
+void init_listbox(Widget* obj)
 {
-    obj->Widget_Ptr = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 10);
+    obj->Widget_Ptr = gtk_list_box_new();
 
     Attributs tableau_attribut[] =
     {
-        {"orientation",        strdup("")},
-        {"espacement_enfant",  strdup("")},
-        {"homogeneite",        strdup("false")},
-        {"baseline",           strdup("centre")},
-        {"couleur_fond",           strdup("")},
-        {"coin_arrondi",           strdup("")},
-        {"margin",           strdup("")},
-        {"margin_top",           strdup("")},
-        {"margin_bottom",           strdup("")},
-        {"margin_left",           strdup("")},
-        {"margin_right",           strdup("")},
-        {"bordure",           strdup("")},
-        {"box_shadow",           strdup("")},
+        {"selection",        strdup("simple")},
     };
 
-    char* tableau_enfant[] = {"buttonbox","flowbox","listbox","revealer","layout","fixed","expander","notebook","stack","stackswitcher","grid",
+    char* tableau_enfant[] = {"listbox","revealer","layout","fixed","expander","notebook","stack","stackswitcher","grid",
     "searchentry","entry","scrollbar","overlay","menuitem","menubar","menu","label","image",
     "headerbar","frame","checkbutton","calendrier","buttonradio","button","box","actionbar","signal"};
 
@@ -35,8 +23,8 @@ void init_box(Widget* obj)
     obj->List_Attribut = (Attributs*)malloc(obj->Nbre_Attribut * sizeof(Attributs));
     obj->List_widget_enfant = (char**)malloc(obj->Nbre_enfant * sizeof(char*));
 
-    obj->apply_attribut_func = apply_attribut_box;
-    obj->set_child = set_child_box;
+    obj->apply_attribut_func = apply_attribut_listbox;
+    obj->set_child = set_child_listbox;
 
     // Copier les attributs
     memcpy(obj->List_Attribut, tableau_attribut, obj->Nbre_Attribut * sizeof(Attributs));

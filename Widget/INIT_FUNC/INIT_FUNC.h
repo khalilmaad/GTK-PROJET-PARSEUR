@@ -57,6 +57,12 @@ void init_layout(Widget* obj);
 
 void init_revealer(Widget* obj);
 
+void init_listbox(Widget* obj);
+
+void init_flowbox(Widget* obj);
+
+void init_buttonbox(Widget* obj);
+
 void init_signal(Widget*);
 
 

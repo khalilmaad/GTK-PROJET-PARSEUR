@@ -45,4 +45,10 @@ void apply_attribut_layout(Widget* obj);
 
 void apply_attribut_revealer(Widget* obj);
 
+void apply_attribut_listbox(Widget* obj);
+
+void apply_attribut_flowbox(Widget* obj);
+
+void apply_attribut_buttonbox(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED

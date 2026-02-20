@@ -4,28 +4,20 @@
 #include "../GENERAL/Widget.h"
 
 
-void init_box(Widget* obj)
+void init_flowbox(Widget* obj)
 {
-    obj->Widget_Ptr = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 10);
+    obj->Widget_Ptr = gtk_flow_box_new();
 
     Attributs tableau_attribut[] =
     {
-        {"orientation",        strdup("")},
-        {"espacement_enfant",  strdup("")},
-        {"homogeneite",        strdup("false")},
-        {"baseline",           strdup("centre")},
-        {"couleur_fond",           strdup("")},
-        {"coin_arrondi",           strdup("")},
-        {"margin",           strdup("")},
-        {"margin_top",           strdup("")},
-        {"margin_bottom",           strdup("")},
-        {"margin_left",           strdup("")},
-        {"margin_right",           strdup("")},
-        {"bordure",           strdup("")},
-        {"box_shadow",           strdup("")},
+        {"selection",        strdup("simple")},
+        {"nombre_max",        strdup("")},
+        {"nombre_min",        strdup("2")},
+        {"espacement_colonne",strdup("")},
+        {"espacement_ligne",  strdup("")},
     };
 
-    char* tableau_enfant[] = {"buttonbox","flowbox","listbox","revealer","layout","fixed","expander","notebook","stack","stackswitcher","grid",
+    char* tableau_enfant[] = {"listbox","revealer","layout","fixed","expander","notebook","stack","stackswitcher","grid",
     "searchentry","entry","scrollbar","overlay","menuitem","menubar","menu","label","image",
     "headerbar","frame","checkbutton","calendrier","buttonradio","button","box","actionbar","signal"};
 
@@ -35,8 +27,8 @@ void init_box(Widget* obj)
     obj->List_Attribut = (Attributs*)malloc(obj->Nbre_Attribut * sizeof(Attributs));
     obj->List_widget_enfant = (char**)malloc(obj->Nbre_enfant * sizeof(char*));
 
-    obj->apply_attribut_func = apply_attribut_box;
-    obj->set_child = set_child_box;
+    obj->apply_attribut_func = apply_attribut_flowbox;
+    obj->set_child = set_child_flowbox;
 
     // Copier les attributs
     memcpy(obj->List_Attribut, tableau_attribut, obj->Nbre_Attribut * sizeof(Attributs));
