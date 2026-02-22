@@ -42,6 +42,7 @@ static struct
     {"toolitem", init_toolitem},
     {"separatortoolitem", init_separatortoolitem},
     {"statusbar", init_statusbar},
+    {"infobar", init_infobar},
     {"signal", init_signal},
 };
 

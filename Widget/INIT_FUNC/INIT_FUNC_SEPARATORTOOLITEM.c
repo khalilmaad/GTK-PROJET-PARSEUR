@@ -5,7 +5,7 @@
 
 void init_separatortoolitem(Widget* obj)
 {
-    obj->Widget_Ptr = gtk_separator_tool_item_new();
+    obj->Widget_Ptr = GTK_WIDGET(gtk_separator_tool_item_new());
     obj->Nbre_Attribut = 0;  // Pas d'attributs spécifiques pour Calendrier
     obj->Nbre_enfant = 0;    // Pas d'enfants spécifiques pour Calendrier
 

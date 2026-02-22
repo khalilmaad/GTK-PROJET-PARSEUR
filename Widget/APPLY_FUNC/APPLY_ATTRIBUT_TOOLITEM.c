@@ -4,7 +4,7 @@
 
 void apply_attribut_toolitem(Widget* obj)
 {
-    GtkToolItem* toolitem = GTK_TOOL_BUTTON(obj->Widget_Ptr);
+    GtkToolButton* toolitem = GTK_TOOL_BUTTON(obj->Widget_Ptr);
 
     // Label
     const char* label = get_attribut("label", obj);

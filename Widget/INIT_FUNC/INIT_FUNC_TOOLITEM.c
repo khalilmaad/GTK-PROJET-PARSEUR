@@ -5,7 +5,7 @@
 
 void init_toolitem(Widget* obj)
 {
-    obj->Widget_Ptr = gtk_tool_button_new(NULL, "Nouveau");
+    obj->Widget_Ptr = GTK_WIDGET(gtk_tool_button_new(NULL, "Nouveau"));
 
     Attributs tableau_attribut[] =
     {
