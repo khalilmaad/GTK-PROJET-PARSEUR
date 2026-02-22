@@ -65,6 +65,12 @@ void init_buttonbox(Widget* obj);
 
 void init_toolbar(Widget* obj);
 
+void init_toolitem(Widget* obj);
+
+void init_separatortoolitem(Widget* obj);
+
+void init_statusbar(Widget* obj);
+
 void init_signal(Widget*);
 
 

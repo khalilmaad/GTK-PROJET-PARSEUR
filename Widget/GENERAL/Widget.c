@@ -39,6 +39,9 @@ static struct
     {"flowbox", init_flowbox},
     {"buttonbox", init_buttonbox},
     {"toolbar", init_toolbar},
+    {"toolitem", init_toolitem},
+    {"separatortoolitem", init_separatortoolitem},
+    {"statusbar", init_statusbar},
     {"signal", init_signal},
 };
 

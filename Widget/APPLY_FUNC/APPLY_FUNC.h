@@ -51,4 +51,8 @@ void apply_attribut_flowbox(Widget* obj);
 
 void apply_attribut_buttonbox(Widget* obj);
 
+void apply_attribut_toolitem(Widget* obj);
+
+void apply_attribut_toolbar(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED
