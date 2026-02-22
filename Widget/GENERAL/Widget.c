@@ -44,6 +44,8 @@ static struct
     {"statusbar", init_statusbar},
     {"infobar", init_infobar},
     {"searchbar", init_searchbar},
+    {"togglebutton", init_togglebutton},
+    {"linkbutton", init_linkbutton},
     {"signal", init_signal},
 };
 

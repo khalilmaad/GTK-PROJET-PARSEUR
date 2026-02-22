@@ -75,7 +75,9 @@ void init_infobar(Widget* obj);
 
 void init_searchbar(Widget* obj);
 
-void init_button(Widget* obj);
+void init_togglebutton(Widget* obj);
+
+void init_linkbutton(Widget* obj);
 
 void init_signal(Widget*);
 

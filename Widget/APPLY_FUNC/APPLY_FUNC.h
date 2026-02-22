@@ -59,4 +59,8 @@ void apply_attribut_infobar(Widget* obj);
 
 void apply_attribut_searchbar(Widget* obj);
 
+void apply_attribut_togglebutton(Widget* obj);
+
+void apply_attribut_linkbutton(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED
