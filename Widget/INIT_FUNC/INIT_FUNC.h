@@ -79,6 +79,8 @@ void init_togglebutton(Widget* obj);
 
 void init_linkbutton(Widget* obj);
 
+void init_spinbutton(Widget* obj);
+
 void init_signal(Widget*);
 
 

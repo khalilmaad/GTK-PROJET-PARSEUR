@@ -46,6 +46,7 @@ static struct
     {"searchbar", init_searchbar},
     {"togglebutton", init_togglebutton},
     {"linkbutton", init_linkbutton},
+    {"spinbutton", init_spinbutton},
     {"signal", init_signal},
 };
 

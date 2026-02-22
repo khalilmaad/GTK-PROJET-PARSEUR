@@ -63,4 +63,6 @@ void apply_attribut_togglebutton(Widget* obj);
 
 void apply_attribut_linkbutton(Widget* obj);
 
+void apply_attribut_spinbutton(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED
