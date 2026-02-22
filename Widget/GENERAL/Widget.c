@@ -43,6 +43,7 @@ static struct
     {"separatortoolitem", init_separatortoolitem},
     {"statusbar", init_statusbar},
     {"infobar", init_infobar},
+    {"searchbar", init_searchbar},
     {"signal", init_signal},
 };
 

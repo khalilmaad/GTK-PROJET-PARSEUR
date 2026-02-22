@@ -57,4 +57,6 @@ void apply_attribut_toolbar(Widget* obj);
 
 void apply_attribut_infobar(Widget* obj);
 
+void apply_attribut_searchbar(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED

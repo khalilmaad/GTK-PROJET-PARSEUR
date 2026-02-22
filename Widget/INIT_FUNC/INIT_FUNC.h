@@ -73,6 +73,10 @@ void init_statusbar(Widget* obj);
 
 void init_infobar(Widget* obj);
 
+void init_searchbar(Widget* obj);
+
+void init_button(Widget* obj);
+
 void init_signal(Widget*);
 
 
