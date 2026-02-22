@@ -38,6 +38,7 @@ static struct
     {"listbox", init_listbox},
     {"flowbox", init_flowbox},
     {"buttonbox", init_buttonbox},
+    {"toolbar", init_toolbar},
     {"signal", init_signal},
 };
 

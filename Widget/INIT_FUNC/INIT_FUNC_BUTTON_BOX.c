@@ -12,6 +12,7 @@ void init_buttonbox(Widget* obj)
     {
         {"orientation",        strdup("")},
         {"disposition",        strdup("")},
+        {"espacement_enfant",  strdup("")},
     };
 
     char* tableau_enfant[] = {"flowbox","listbox","revealer","layout","fixed","expander","notebook","stack","stackswitcher","grid",

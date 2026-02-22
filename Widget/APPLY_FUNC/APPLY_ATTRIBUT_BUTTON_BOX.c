@@ -46,4 +46,19 @@ void apply_attribut_buttonbox(Widget* obj)
             }
         }
     }
+
+    const char* espacement_enfant_str = get_attribut("espacement_enfant", obj);
+    if (espacement_enfant_str != NULL)
+    {
+        int espacement_enfant = atoi(espacement_enfant_str);
+
+        if (espacement_enfant >= 0)
+        {
+            gtk_box_set_spacing(GTK_BOX(buttonbox), espacement_enfant);
+        }
+        else
+        {
+            gtk_box_set_spacing(GTK_BOX(buttonbox), 10);
+        }
+    }
 }

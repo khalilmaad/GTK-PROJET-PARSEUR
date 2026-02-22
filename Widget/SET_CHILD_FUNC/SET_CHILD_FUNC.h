@@ -37,4 +37,6 @@ void set_child_listbox( Widget* pere,Widget* fils);
 
 void set_child_flowbox( Widget* pere,Widget* fils);
 
+void set_child_toolbar( Widget* pere,Widget* fils);
+
 #endif // SET_CHILD_FUNC_H_INCLUDED

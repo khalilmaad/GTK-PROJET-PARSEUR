@@ -63,6 +63,8 @@ void init_flowbox(Widget* obj);
 
 void init_buttonbox(Widget* obj);
 
+void init_toolbar(Widget* obj);
+
 void init_signal(Widget*);
 
 
