@@ -3,34 +3,28 @@
 #include "../GENERAL/Widget.h"
 #include "../SET_CHILD_FUNC/SET_CHILD_FUNC.h"
 
-
-void init_linkbutton(Widget* obj)
+void init_menubutton(Widget* obj)
 {
-    obj->Widget_Ptr = gtk_link_button_new("https://www.gtk.org");
+    obj->Widget_Ptr = gtk_menu_button_new();
 
-    Attributs tableau_attribut[] =
+    Attributs tableau_attribut[]=
     {
-        {"url",                       strdup("")},
-        {"label",                     strdup("")},
+        {"label",           strdup("")},
+        {"direction",         strdup("")},
+        {"icone",         strdup("")},
     };
 
-    char* tableau_enfant[] =
-    {
-        "signal"
-    };
+    char* tableau_enfant[] = {"signal","menu"};
 
     obj->Nbre_Attribut = sizeof(tableau_attribut) / sizeof(tableau_attribut[0]);
     obj->Nbre_enfant = sizeof(tableau_enfant) / sizeof(tableau_enfant[0]);
 
     obj->List_Attribut = (Attributs*)malloc(obj->Nbre_Attribut * sizeof(Attributs));
-    obj->List_widget_enfant = (char**)malloc(obj->Nbre_enfant * sizeof(char*));
+    obj->List_widget_enfant =(char**) malloc(obj->Nbre_enfant * sizeof(char*));
 
-    obj->apply_attribut_func = apply_attribut_linkbutton;
-    obj->set_child = set_child_default;
+    obj->apply_attribut_func = apply_attribut_menubutton;
+    obj->set_child = set_child_menubutton;
 
-    // Copier les attributs
     memcpy(obj->List_Attribut, tableau_attribut, obj->Nbre_Attribut * sizeof(Attributs));
-
-    // Copier les enfants
     memcpy(obj->List_widget_enfant, tableau_enfant, obj->Nbre_enfant * sizeof(char*));
 }

@@ -25,7 +25,7 @@ void init_box(Widget* obj)
         {"box_shadow",           strdup("")},
     };
 
-    char* tableau_enfant[] = {"buttonbox","flowbox","listbox","revealer","layout","fixed","expander","notebook","stack","stackswitcher","grid",
+    char* tableau_enfant[] = {"linkbutton","buttonbox","flowbox","listbox","revealer","layout","fixed","expander","notebook","stack","stackswitcher","grid",
     "searchentry","entry","scrollbar","overlay","menuitem","menubar","menu","label","image",
     "headerbar","frame","checkbutton","calendrier","buttonradio","button","box","actionbar","signal"};
 

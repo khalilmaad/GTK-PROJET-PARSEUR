@@ -65,4 +65,10 @@ void apply_attribut_linkbutton(Widget* obj);
 
 void apply_attribut_spinbutton(Widget* obj);
 
+void apply_attribut_switch(Widget* obj);
+
+void apply_attribut_scalebutton(Widget* obj);
+
+void apply_attribut_menubutton(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED

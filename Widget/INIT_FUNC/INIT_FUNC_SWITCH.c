@@ -4,14 +4,13 @@
 #include "../SET_CHILD_FUNC/SET_CHILD_FUNC.h"
 
 
-void init_linkbutton(Widget* obj)
+void init_switch(Widget* obj)
 {
-    obj->Widget_Ptr = gtk_link_button_new("https://www.gtk.org");
+    obj->Widget_Ptr = gtk_switch_new();
 
     Attributs tableau_attribut[] =
     {
-        {"url",                       strdup("")},
-        {"label",                     strdup("")},
+        {"active", strdup("true")},
     };
 
     char* tableau_enfant[] =
@@ -25,7 +24,7 @@ void init_linkbutton(Widget* obj)
     obj->List_Attribut = (Attributs*)malloc(obj->Nbre_Attribut * sizeof(Attributs));
     obj->List_widget_enfant = (char**)malloc(obj->Nbre_enfant * sizeof(char*));
 
-    obj->apply_attribut_func = apply_attribut_linkbutton;
+    obj->apply_attribut_func = apply_attribut_switch;
     obj->set_child = set_child_default;
 
     // Copier les attributs

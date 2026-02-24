@@ -47,6 +47,9 @@ static struct
     {"togglebutton", init_togglebutton},
     {"linkbutton", init_linkbutton},
     {"spinbutton", init_spinbutton},
+    {"switch", init_switch},
+    {"scalebutton", init_scalebutton},
+    {"menubutton", init_menubutton},
     {"signal", init_signal},
 };
 

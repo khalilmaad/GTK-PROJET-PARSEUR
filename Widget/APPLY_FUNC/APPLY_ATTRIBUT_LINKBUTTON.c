@@ -9,7 +9,7 @@ void apply_attribut_linkbutton(Widget* obj)
     const char* label = get_attribut("label", obj);
     if (label != NULL)
     {
-        gtk_link_button_set_label(linkbutton, label);
+        gtk_button_set_label(GTK_BUTTON(linkbutton), label);
     }
 
 

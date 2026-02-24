@@ -81,6 +81,12 @@ void init_linkbutton(Widget* obj);
 
 void init_spinbutton(Widget* obj);
 
+void init_switch(Widget* obj);
+
+void init_scalebutton(Widget* obj);
+
+void init_menubutton(Widget* obj);
+
 void init_signal(Widget*);
 
 
