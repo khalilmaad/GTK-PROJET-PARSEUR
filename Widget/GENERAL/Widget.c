@@ -50,6 +50,7 @@ static struct
     {"switch", init_switch},
     {"scalebutton", init_scalebutton},
     {"menubutton", init_menubutton},
+    {"progressbar", init_progressbar},
     {"signal", init_signal},
 };
 

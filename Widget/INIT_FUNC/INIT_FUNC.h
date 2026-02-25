@@ -87,6 +87,8 @@ void init_scalebutton(Widget* obj);
 
 void init_menubutton(Widget* obj);
 
+void init_progressbar(Widget* obj);
+
 void init_signal(Widget*);
 
 

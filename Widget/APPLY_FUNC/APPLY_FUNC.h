@@ -71,4 +71,6 @@ void apply_attribut_scalebutton(Widget* obj);
 
 void apply_attribut_menubutton(Widget* obj);
 
+void apply_attribut_progressbar(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED
