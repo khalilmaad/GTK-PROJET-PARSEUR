@@ -51,6 +51,7 @@ static struct
     {"scalebutton", init_scalebutton},
     {"menubutton", init_menubutton},
     {"progressbar", init_progressbar},
+    {"levelbar", init_levelbar},
     {"signal", init_signal},
 };
 
