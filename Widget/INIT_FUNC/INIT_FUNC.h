@@ -99,6 +99,8 @@ void init_colorbutton(Widget* obj);
 
 void init_fontbutton(Widget* obj);
 
+void init_filechoosebutton(Widget* obj);
+
 void init_signal(Widget*);
 
 

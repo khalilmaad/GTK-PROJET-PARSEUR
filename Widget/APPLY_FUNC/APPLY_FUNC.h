@@ -83,4 +83,6 @@ void apply_attribut_colorbutton(Widget* obj);
 
 void apply_attribut_fontbutton(Widget* obj);
 
+void apply_attribut_filechoosebutton(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED
