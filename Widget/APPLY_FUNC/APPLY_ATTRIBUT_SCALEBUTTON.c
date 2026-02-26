@@ -2,7 +2,7 @@
 #include "../GENERAL/Widget.h"
 
 
-void apply_attribut_scalebutton(Widget* obj)
+void apply_attribut_scale(Widget* obj)
 {
     /*GtkScaleButton* scalebutton = GTK_SCALE_BUTTON(obj->Widget_Ptr);
 

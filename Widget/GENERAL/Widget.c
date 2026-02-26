@@ -53,6 +53,7 @@ static struct
     {"progressbar", init_progressbar},
     {"levelbar", init_levelbar},
     {"spinner", init_spinner},
+    {"scale", init_scale},
     {"signal", init_signal},
 };
 

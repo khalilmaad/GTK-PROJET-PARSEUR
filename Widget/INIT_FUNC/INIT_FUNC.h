@@ -93,6 +93,8 @@ void init_levelbar(Widget* obj);
 
 void init_spinner(Widget* obj);
 
+void init_scale(Widget* obj);
+
 void init_signal(Widget*);
 
 

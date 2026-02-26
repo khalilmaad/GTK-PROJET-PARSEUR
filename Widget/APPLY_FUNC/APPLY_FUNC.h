@@ -77,4 +77,6 @@ void apply_attribut_levelbar(Widget* obj);
 
 void apply_attribut_spinner(Widget* obj);
 
+void apply_attribut_scale(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED

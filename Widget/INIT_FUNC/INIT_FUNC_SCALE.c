@@ -4,24 +4,21 @@
 #include "../SET_CHILD_FUNC/SET_CHILD_FUNC.h"
 
 
-void init_scalebutton(Widget* obj)
+void init_scale(Widget* obj)
 {
-    obj->Widget_Ptr = gtk_scale_button_new(
-                 GTK_ORIENTATION_HORIZONTAL, // orientation du curseur
-                 0.0,  // valeur min
-                 100.0, // valeur max
-                 1.0); // step increment
+    obj->Widget_Ptr = gtk_scale_new_with_range(GTK_ORIENTATION_HORIZONTAL,
+                                 0.0,   // min
+                                 100.0, // max
+                                 1.0);  // step
 
     Attributs tableau_attribut[] =
     {
         {"min",                     strdup("0.0")},
         {"max",                     strdup("100.0")},
-        {"step",                    strdup("1.0")},
-        {"page_increment",          strdup("10.0")},
+        {"pos_value",               strdup("gauche")},
         {"value",                   strdup("")},
-        {"orientation",            strdup("")},
-        {"icone",                  strdup("")},
-        {"label",                  strdup("")},
+        {"aff_valeur_cote_curseur", strdup("true")},
+        {"orientation",             strdup("")},
     };
 
     char* tableau_enfant[] =
@@ -35,7 +32,7 @@ void init_scalebutton(Widget* obj)
     obj->List_Attribut = (Attributs*)malloc(obj->Nbre_Attribut * sizeof(Attributs));
     obj->List_widget_enfant = (char**)malloc(obj->Nbre_enfant * sizeof(char*));
 
-    obj->apply_attribut_func = apply_attribut_scalebutton;
+    obj->apply_attribut_func = apply_attribut_scale;
     obj->set_child = set_child_default;
 
     // Copier les attributs
@@ -43,6 +40,5 @@ void init_scalebutton(Widget* obj)
 
     // Copier les enfants
     memcpy(obj->List_widget_enfant, tableau_enfant, obj->Nbre_enfant * sizeof(char*));
-
 
 }
