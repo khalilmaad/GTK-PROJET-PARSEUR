@@ -95,6 +95,10 @@ void init_spinner(Widget* obj);
 
 void init_scale(Widget* obj);
 
+void init_colorbutton(Widget* obj);
+
+void init_fontbutton(Widget* obj);
+
 void init_signal(Widget*);
 
 

@@ -54,6 +54,8 @@ static struct
     {"levelbar", init_levelbar},
     {"spinner", init_spinner},
     {"scale", init_scale},
+    {"colorbutton", init_colorbutton},
+    {"fontbutton", init_fontbutton},
     {"signal", init_signal},
 };
 

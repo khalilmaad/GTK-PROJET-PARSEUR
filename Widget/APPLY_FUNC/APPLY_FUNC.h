@@ -79,4 +79,8 @@ void apply_attribut_spinner(Widget* obj);
 
 void apply_attribut_scale(Widget* obj);
 
+void apply_attribut_colorbutton(Widget* obj);
+
+void apply_attribut_fontbutton(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED
