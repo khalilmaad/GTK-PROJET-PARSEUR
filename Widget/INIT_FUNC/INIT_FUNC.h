@@ -91,6 +91,8 @@ void init_progressbar(Widget* obj);
 
 void init_levelbar(Widget* obj);
 
+void init_spinner(Widget* obj);
+
 void init_signal(Widget*);
 
 

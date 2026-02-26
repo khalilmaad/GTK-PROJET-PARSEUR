@@ -13,7 +13,7 @@ gboolean pulse_callback(gpointer data)
 }
 
 // Fonction appelée pour ARRÊTER l'animation
-gboolean stop_animation_callback(gpointer data)
+static gboolean stop_animation_callback(gpointer data)
 {
     GtkProgressBar *progress = GTK_PROGRESS_BAR(data);
 

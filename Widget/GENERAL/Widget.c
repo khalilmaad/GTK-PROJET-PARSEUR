@@ -52,6 +52,7 @@ static struct
     {"menubutton", init_menubutton},
     {"progressbar", init_progressbar},
     {"levelbar", init_levelbar},
+    {"spinner", init_spinner},
     {"signal", init_signal},
 };
 

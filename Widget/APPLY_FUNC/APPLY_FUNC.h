@@ -75,4 +75,6 @@ void apply_attribut_progressbar(Widget* obj);
 
 void apply_attribut_levelbar(Widget* obj);
 
+void apply_attribut_spinner(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED

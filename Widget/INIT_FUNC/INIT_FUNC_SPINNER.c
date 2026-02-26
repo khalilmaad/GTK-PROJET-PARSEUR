@@ -4,19 +4,13 @@
 #include "../SET_CHILD_FUNC/SET_CHILD_FUNC.h"
 
 
-void init_levelbar(Widget* obj)
+void init_spinner(Widget* obj)
 {
-    obj->Widget_Ptr = gtk_level_bar_new();
+    obj->Widget_Ptr = gtk_spinner_new();
 
     Attributs tableau_attribut[] =
     {
-        {"min",                     strdup("0.0")},
-        {"max",                     strdup("1.0")},
-        {"value",                   strdup("0.0")},
-        {"orientation",             strdup("")},
-        {"mode",                    strdup("continu")},
-        {"level_low",               strdup("0.3")},
-        {"level_high",              strdup("0.8")},
+        {"duree_ms",                    strdup("10000")}
     };
 
     char* tableau_enfant[] =
@@ -30,7 +24,7 @@ void init_levelbar(Widget* obj)
     obj->List_Attribut = (Attributs*)malloc(obj->Nbre_Attribut * sizeof(Attributs));
     obj->List_widget_enfant = (char**)malloc(obj->Nbre_enfant * sizeof(char*));
 
-    obj->apply_attribut_func = apply_attribut_levelbar;
+    obj->apply_attribut_func = apply_attribut_spinner;
     obj->set_child = set_child_default;
 
     // Copier les attributs
