@@ -85,4 +85,6 @@ void apply_attribut_fontbutton(Widget* obj);
 
 void apply_attribut_filechoosebutton(Widget* obj);
 
+void apply_attribut_checkmenuitem(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED

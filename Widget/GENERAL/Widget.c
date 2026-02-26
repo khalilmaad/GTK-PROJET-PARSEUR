@@ -57,6 +57,7 @@ static struct
     {"colorbutton", init_colorbutton},
     {"fontbutton", init_fontbutton},
     {"filechoosebutton", init_filechoosebutton},
+    {"checkmenuitem", init_checkmenuitem},
     {"signal", init_signal},
 };
 
