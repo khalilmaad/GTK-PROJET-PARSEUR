@@ -6,9 +6,9 @@ static GHashTable *radio_group_first_buttons = NULL;
 // Affecter un groupe à un bouton radio existant
 static void set_radio_group(GtkWidget *radio, const char *group_name)
 {
-    if (!GTK_IS_RADIO_BUTTON(radio))
+    if (!GTK_IS_RADIO_MENU_ITEM(radio))
     {
-        printf("\nERREUR: Widget %p n'est pas un GtkRadioButton\n", radio);
+        printf("\nERREUR: Widget %p n'est pas un GtkRadioMenuItem\n", radio);
         return;
     }
 
@@ -44,30 +44,30 @@ static void set_radio_group(GtkWidget *radio, const char *group_name)
         printf("\n-> Ajout au groupe existant (premier: %p)", first_button);
 
         // Récupérer le groupe du premier bouton
-        GSList *group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(first_button));
+        GSList *group = gtk_radio_menu_item_get_group(GTK_RADIO_MENU_ITEM(first_button));
 
         // Définir ce bouton dans le même groupe
-        gtk_radio_button_set_group(GTK_RADIO_BUTTON(radio), group);
+        gtk_radio_menu_item_set_group(GTK_RADIO_MENU_ITEM(radio), group);
     }
 }
 
 
-void apply_attribut_buttonradio(Widget* obj)
+void apply_attribut_radiomenuitem(Widget* obj)
 {
-    GtkWidget* buttonradio = obj->Widget_Ptr;
+    GtkWidget* item = obj->Widget_Ptr;
 
     // Label
     const char* label = get_attribut("label", obj);
     if (label != NULL)
     {
-        gtk_button_set_label(GTK_BUTTON(buttonradio), label);
+        radiomenuitem(GTK_MENU_ITEM(item), label);
     }
 
     // Utiliser mnémonique (raccourci clavier)
     const char* groupe = get_attribut("groupe", obj);
     if (groupe != NULL)
     {
-        set_radio_group(buttonradio, groupe);
+        set_radio_group(item, groupe);
     }
     else
     {

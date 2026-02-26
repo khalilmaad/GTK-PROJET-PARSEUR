@@ -103,6 +103,8 @@ void init_filechoosebutton(Widget* obj);
 
 void init_checkmenuitem(Widget* obj);
 
+void init_radiomenuitem(Widget* obj);
+
 void init_signal(Widget*);
 
 
