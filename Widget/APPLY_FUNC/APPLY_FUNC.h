@@ -89,4 +89,6 @@ void apply_attribut_checkmenuitem(Widget* obj);
 
 void apply_attribut_radiomenuitem(Widget* obj);
 
+void apply_attribut_comboboxtext(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED

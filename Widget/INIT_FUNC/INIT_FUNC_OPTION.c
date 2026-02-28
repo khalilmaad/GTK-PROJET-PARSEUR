@@ -3,18 +3,18 @@
 #include "../GENERAL/Widget.h"
 #include "../SET_CHILD_FUNC/SET_CHILD_FUNC.h"
 
-void init_menu(Widget* obj)
+
+
+void init_option(Widget* obj)
 {
-    obj->Widget_Ptr = gtk_menu_new();
+    obj->Widget_Ptr = NULL;
 
     Attributs tableau_attribut[]=
     {
-        {"horizontal",           strdup("false")},
-        {"x",         strdup("0")},
-        {"y",         strdup("1")}
+        {"texte",           strdup("Nouveau option")},
     };
 
-    char* tableau_enfant[] = {"menuitem","radiomenuitem","checkmenuitem"};
+    char* tableau_enfant[] = {"fenetre"};
 
     obj->Nbre_Attribut = sizeof(tableau_attribut) / sizeof(tableau_attribut[0]);
     obj->Nbre_enfant = sizeof(tableau_enfant) / sizeof(tableau_enfant[0]);
@@ -23,7 +23,7 @@ void init_menu(Widget* obj)
     obj->List_widget_enfant =(char**) malloc(obj->Nbre_enfant * sizeof(char*));
 
     obj->apply_attribut_func = NULL;
-    obj->set_child = set_child_menu;
+    obj->set_child = NULL;
 
     memcpy(obj->List_Attribut, tableau_attribut, obj->Nbre_Attribut * sizeof(Attributs));
     memcpy(obj->List_widget_enfant, tableau_enfant, obj->Nbre_enfant * sizeof(char*));

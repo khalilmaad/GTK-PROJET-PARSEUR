@@ -2,7 +2,6 @@
 #include "../GENERAL/Widget.h"
 
 
-
 void set_child_actionbar(Widget* pere,Widget* fils)
 {
     if(!Controle_parente(pere,fils)) return;

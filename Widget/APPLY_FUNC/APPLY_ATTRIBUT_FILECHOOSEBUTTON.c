@@ -35,7 +35,7 @@ void apply_attribut_filechoosebutton(Widget* obj)
         {
             if (strcmp(type, type_mapping[i].nom) == 0)
             {
-                gtk_file_chooser_set_action(GTK_FILE_CHOOSER(filechoosebutton), position_mapping[i].action);
+                gtk_file_chooser_set_action(GTK_FILE_CHOOSER(filechoosebutton), type_mapping[i].action);
                 break;
             }
         }

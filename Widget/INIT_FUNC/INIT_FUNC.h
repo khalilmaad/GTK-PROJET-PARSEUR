@@ -105,6 +105,14 @@ void init_checkmenuitem(Widget* obj);
 
 void init_radiomenuitem(Widget* obj);
 
+void init_separatormenuitem(Widget* obj);
+
+void init_comboboxtext(Widget* obj);
+
+void init_comboboxtextentry(Widget* obj);
+
+void init_option(Widget* obj);
+
 void init_signal(Widget*);
 
 

@@ -60,7 +60,7 @@ void apply_attribut_radiomenuitem(Widget* obj)
     const char* label = get_attribut("label", obj);
     if (label != NULL)
     {
-        radiomenuitem(GTK_MENU_ITEM(item), label);
+        gtk_menu_item_set_label(GTK_MENU_ITEM(item), label);
     }
 
     // Utiliser mnémonique (raccourci clavier)

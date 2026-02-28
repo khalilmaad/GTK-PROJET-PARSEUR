@@ -59,6 +59,10 @@ static struct
     {"filechoosebutton", init_filechoosebutton},
     {"checkmenuitem", init_checkmenuitem},
     {"radiomenuitem", init_radiomenuitem},
+    {"separatormenuitem", init_separatormenuitem},
+    {"comboboxtext", init_comboboxtext},
+    {"comboboxtextentry", init_comboboxtextentry},
+    {"option", init_option},
     {"signal", init_signal},
 };
 

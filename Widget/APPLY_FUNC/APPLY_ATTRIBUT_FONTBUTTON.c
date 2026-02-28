@@ -10,7 +10,7 @@ void apply_attribut_fontbutton(Widget* obj)
     const char* label = get_attribut("label", obj);
     if (label != NULL)
     {
-        gtk_font_button_set_preview_text(fontbutton, label);
+        gtk_font_chooser_set_preview_text(GTK_FONT_CHOOSER(fontbutton), label);
     }
 
 

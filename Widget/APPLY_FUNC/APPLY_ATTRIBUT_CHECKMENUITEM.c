@@ -9,7 +9,7 @@ void apply_attribut_checkmenuitem(Widget* obj)
     const char* label = get_attribut("label", obj);
     if (label != NULL)
     {
-        gtk_menu_item_set_label(check, label);
+        gtk_menu_item_set_label(GTK_MENU_ITEM(check), label);
     }
 
     // Utiliser mnémonique (raccourci clavier)
