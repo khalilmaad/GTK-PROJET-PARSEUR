@@ -2,16 +2,6 @@
 #include "../GENERAL/Widget.h"
 
 
-// Callback pour la touche Entrée
-static void on_entry_activate(GtkEntry* entry, gpointer user_data)
-{
-    const gchar* text = gtk_entry_get_text(entry);
-
-    printf("\nTexte saisi: %s\n", text);
-
-    // Effacer après traitement
-    gtk_entry_set_text(entry, "");
-}
 
 void apply_attribut_entry(Widget* obj)
 {
@@ -35,7 +25,7 @@ void apply_attribut_entry(Widget* obj)
     const char* longueur_max_str = get_attribut("longueur_max", obj);
     if (longueur_max_str != NULL)
     {
-        int longueur_max = atoi(longueur_max_str);
+        long longueur_max = string_to_long("longueur_max",longueur_max_str);
 
         if (longueur_max > 0)
         {
@@ -73,11 +63,7 @@ void apply_attribut_entry(Widget* obj)
     if (alignement_texte != NULL)
     {
         // Table de correspondance
-        static const struct
-        {
-            const char* nom;
-            float alignement;
-        } alignement_mapping[] =
+        mapping_value alignement_mapping[] =
         {
             {"droite", 1.0},
             {"centre", 0.5},
@@ -90,10 +76,12 @@ void apply_attribut_entry(Widget* obj)
         {
             if (strcmp(alignement_texte, alignement_mapping[i].nom) == 0)
             {
-                gtk_entry_set_alignment(entry, alignement_mapping[i].alignement);
-                break;
+                gtk_entry_set_alignment(entry, alignement_mapping[i].position);
+                goto suivant;
             }
         }
+        print_error_mapping_value("alignement_texte",alignement_mapping);
+        suivant:
     }
 
     // SearchEntry (avec icône de recherche)
@@ -104,11 +92,7 @@ void apply_attribut_entry(Widget* obj)
     if (sensibilite_icone != NULL && position_icone != NULL && icone != NULL)
     {
         // Table de correspondance pour la position de l'icône
-        static const struct
-        {
-            const char* nom;
-            GtkEntryIconPosition position;
-        } icon_mapping[] =
+        mapping_value icon_mapping[] =
         {
             {"droite", GTK_ENTRY_ICON_SECONDARY},
             {"gauche", GTK_ENTRY_ICON_PRIMARY},
@@ -129,12 +113,97 @@ void apply_attribut_entry(Widget* obj)
                 gtk_entry_set_icon_sensitive(entry,
                                              icon_mapping[i].position,
                                              to_bool(sensibilite_icone));
-                break;
+                 goto suivant2;
             }
         }
+        print_error_mapping_value("position_icone",icon_mapping);
+        suivant2:
+    }
+
+    const char* couleur_fond = get_attribut("couleur_fond", obj);
+    if (couleur_fond != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-background-color",couleur_fond);
+    }
+
+    const char* coin_arrondi = get_attribut("coin_arrondi", obj);
+    if (coin_arrondi != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-border-radius",coin_arrondi);
+    }
+
+    const char* margin = get_attribut("margin", obj);
+    if (margin != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-margin",margin);
+    }
+
+    const char* margin_top = get_attribut("margin_top", obj);
+    if (margin_top != NULL)
+    {
+        gtk_widget_set_margin_top(obj->Widget_Ptr,string_to_long("margin_top",margin_top));
+    }
+
+    const char* margin_bottom = get_attribut("margin_bottom", obj);
+    if (margin_bottom != NULL)
+    {
+        gtk_widget_set_margin_bottom(obj->Widget_Ptr,string_to_long("margin_bottom",margin_bottom));
+    }
+
+    const char* margin_left = get_attribut("margin_left", obj);
+    if (margin_left != NULL)
+    {
+        gtk_widget_set_margin_start(obj->Widget_Ptr,string_to_long("margin_left",margin_left));
+    }
+
+    const char* margin_right = get_attribut("margin_right", obj);
+    if (margin_right != NULL)
+    {
+        gtk_widget_set_margin_end(obj->Widget_Ptr,string_to_long("margin_right",margin_right));
+    }
+
+    const char* bordure = get_attribut("bordure", obj);
+    if (bordure != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-border",bordure);
+    }
+
+    const char* box_shadow = get_attribut("box_shadow", obj);
+    if (bordure != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-box-shadow",box_shadow);
+    }
+
+    const char* couleur_label = get_attribut("couleur_label", obj);
+    if (couleur_label != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-color",couleur_label);
+    }
+    const char* font_style = get_attribut("font_style", obj);
+    if (font_style != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-font-style",font_style);
+    }
+
+    const char* font_weight = get_attribut("font_weight", obj);
+    if (font_weight != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-font-weight",font_weight);
+    }
+
+    const char* font_size = get_attribut("font_size", obj);
+    if (font_size != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-font-size",font_size);
+    }
+
+    const char* font_family = get_attribut("font_family", obj);
+    if (font_family != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-font-family",font_family);
     }
 
     // Quand on presse Entrée
-    g_signal_connect(entry, "activate",
-                     G_CALLBACK(on_entry_activate), NULL);
+    /*g_signal_connect(entry, "activate",
+                     G_CALLBACK(on_entry_activate), NULL);*/
 }

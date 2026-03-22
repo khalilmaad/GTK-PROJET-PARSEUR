@@ -16,7 +16,20 @@ void init_button(Widget* obj)
         {"taille_icone",                strdup("24")},
         {"position_icone",              strdup("gauche")},
         {"toujours_afficher_icone",     strdup("true")},
-        {"use_underline",               strdup("true")}
+        {"use_underline",               strdup("true")},
+        {"coin_arrondi",       strdup("")},
+        {"margin",             strdup("")},
+        {"margin_top",         strdup("")},
+        {"margin_bottom",      strdup("")},
+        {"margin_left",        strdup("")},
+        {"margin_right",       strdup("")},
+        {"bordure",            strdup("")},
+        {"couleur_label",      strdup("")},
+        {"font_weight",        strdup("")},
+        {"font_size",          strdup("")},
+        {"font_style",        strdup("")},
+        {"font_family",          strdup("")},
+        {"couleur_fond",    strdup("")},
     };
 
     char* tableau_enfant[] =

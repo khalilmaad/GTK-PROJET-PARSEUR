@@ -20,17 +20,15 @@ void set_child_paned(Widget* pere,Widget* fils)
         }
         else
         {
-            printf("\n\033[1;31m[Liaison]\033[0m Liaison au parent \033[1;34m%s\033[0m",pere->Nom);
-            printf("\n\033[1;34mMessage : \033[1;31mEchec liaison au parente -> (\033[1;34minsert_cote=%s\033[1;31m) valeur incoorect (\033[0m",insert_cote);
-            exit(1);
+            print_error_liaison(pere->Nom);
+            print_message_error_liaison("(valeur de insert_cote=gauche/droite/haut/bas)");
         }
     }
     else
     {
-        printf("\n\033[1;31m[Liaison]\033[0m Liaison au parent \033[1;34m%s\033[0m",pere->Nom);
-        printf("\n\033[1;34mMessage : \033[1;31mEchec liaison au parente -> manque attribut indiquant cote d'insertion (insert_cote=gauche/droite)");
-        exit(1);
+        print_error_liaison(pere->Nom);
+        print_message_error_liaison("(insert_cote=gauche/droite/haut/bas)");
     }
 
-    printf("\n\033[1;32m[Liaison]\033[0m Liaison au parent \033[1;34m%s\033[0m",pere->Nom);
+    print_succes_liaison(pere->Nom);
 }

@@ -14,7 +14,7 @@ void set_child_stack( Widget* pere, Widget* fils)
 
         char buffer[20];
 
-        int n = atoi(nombre_page);
+        int n = (int)string_to_long("nombre_page",nombre_page);
 
         snprintf(buffer, sizeof(buffer), "%d", ++n);
 
@@ -23,9 +23,8 @@ void set_child_stack( Widget* pere, Widget* fils)
     }
     else
     {
-        printf("\n\033[1;31m[Liaison]\033[0m Liaison au parent \033[1;34m%s\033[0m",pere->Nom);
-        printf("\n\033[1;34mMessage : \033[1;31mEchec liaison au parente -> manque attribut indiquant le titre de la page (page_titre=\"valeur\")");
-        exit(1);
+        print_error_liaison(pere->Nom);
+        print_message_error_liaison("(page_titre=\"valeur\")");
     }
-    printf("\n\033[1;32m[Liaison]\033[0m Liaison au parent \033[1;34m%s\033[0m",pere->Nom);
+    print_succes_liaison(pere->Nom);
 }

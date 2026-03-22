@@ -10,11 +10,7 @@ void apply_attribut_scrollbar(Widget* obj)
     if (affichage_vertical != NULL && affichage_horizontal != NULL)
     {
         // Table de correspondance pour le type d'affichage
-        static const struct
-        {
-            const char* nom;
-            GtkPolicyType type;
-        } type_mapping[] =
+        mapping_value type_mapping[] =
         {
             {"jamais",    GTK_POLICY_NEVER},
             {"toujours",  GTK_POLICY_ALWAYS},
@@ -30,20 +26,24 @@ void apply_attribut_scrollbar(Widget* obj)
         {
             if (strcmp(affichage_vertical, type_mapping[i].nom) == 0)
             {
-                vert_type = type_mapping[i].type;
-                break;
+                vert_type = type_mapping[i].position;
+                 goto suivant;
             }
         }
+        print_error_mapping_value("affichage_vertical",type_mapping);
+        suivant:
 
         // Recherche du type horizontal
         for (int i = 0; type_mapping[i].nom != NULL; i++)
         {
             if (strcmp(affichage_horizontal, type_mapping[i].nom) == 0)
             {
-                horiz_type = type_mapping[i].type;
-                break;
+                horiz_type = type_mapping[i].position;
+                goto suivant2;
             }
         }
+        print_error_mapping_value("affichage_horizontal",type_mapping);
+        suivant2:
 
         // Appliquer la politique de défilement
         // Note: Les paramètres sont (horizontal_policy, vertical_policy)

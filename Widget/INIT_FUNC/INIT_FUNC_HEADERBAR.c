@@ -12,7 +12,11 @@ void init_header_bar(Widget* obj)
         {"titre",                         strdup("")},
         {"sous_titre",                    strdup("")},
         {"afficher_boutton_fermeture",    strdup("true")},
-        {"disposition",                   strdup("")}
+        {"disposition",                   strdup("")},
+        {"couleur_label",      strdup("")},
+        {"font_style",        strdup("")},
+        {"font_size",          strdup("")},
+        {"font_family",          strdup("")},
     };
 
     obj->Nbre_Attribut = sizeof(tableau_attribut) / sizeof(tableau_attribut[0]);

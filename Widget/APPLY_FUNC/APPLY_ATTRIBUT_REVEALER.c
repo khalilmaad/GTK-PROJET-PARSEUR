@@ -10,11 +10,7 @@ void apply_attribut_revealer(Widget* obj)
     const char* transition = get_attribut("transition",obj);
     if (transition)
     {
-        static const struct
-        {
-            const char* nom;
-            GtkRevealerTransitionType type;
-        } typetransition_mapping[] =
+        mapping_value typetransition_mapping[] =
         {
             {"aucun", GTK_REVEALER_TRANSITION_TYPE_NONE},
             {"fondu",  GTK_REVEALER_TRANSITION_TYPE_CROSSFADE},
@@ -30,17 +26,19 @@ void apply_attribut_revealer(Widget* obj)
         {
             if (strcmp(transition, typetransition_mapping[i].nom) == 0)
             {
-                gtk_revealer_set_transition_type(revealer, typetransition_mapping[i].type);
-                break;
+                gtk_revealer_set_transition_type(revealer, typetransition_mapping[i].position);
+                goto suivant;
             }
         }
+        print_error_mapping_value("transition",typetransition_mapping);
+        suivant:
     }
 
     const char* duree_transition_str = get_attribut("duree_transition",obj);
     if (duree_transition_str)
     {
 
-        int duree_transition = atoi(duree_transition_str);
+        long duree_transition = string_to_long("duree_transition",duree_transition_str);
 
         if (duree_transition > 190 && duree_transition < 1010)
         {

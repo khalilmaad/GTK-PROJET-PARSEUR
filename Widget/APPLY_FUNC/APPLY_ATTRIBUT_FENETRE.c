@@ -12,11 +12,7 @@ void apply_attribut_fenetre(Widget* obj)
     const char* typefenetre = get_attribut("type_fenetre",obj);
     if (typefenetre)
     {
-        static const struct
-        {
-            const char* nom;
-            GdkWindowTypeHint type;
-        } type_mapping[] =
+        mapping_value type_mapping[] =
         {
             {"normale", GDK_WINDOW_TYPE_HINT_NORMAL},
             {"normal",  GDK_WINDOW_TYPE_HINT_NORMAL},
@@ -31,10 +27,12 @@ void apply_attribut_fenetre(Widget* obj)
         {
             if (strcmp(typefenetre, type_mapping[i].nom) == 0)
             {
-                gtk_window_set_type_hint(window, type_mapping[i].type);
-                break;
+                gtk_window_set_type_hint(window, type_mapping[i].position);
+                goto suivant;
             }
         }
+        print_error_mapping_value("type_fenetre",type_mapping);
+        suivant:
     }
 
     // Titre
@@ -50,8 +48,8 @@ void apply_attribut_fenetre(Widget* obj)
     if (largeur_str && hauteur_str)
     {
 
-        int largeur = atoi(largeur_str);
-        int hauteur = atoi(hauteur_str);
+        long largeur = string_to_long("largeur",largeur_str);
+        long hauteur = string_to_long("hauteur",hauteur_str);
 
         if (largeur > 0 && hauteur > 0)
         {
@@ -60,50 +58,6 @@ void apply_attribut_fenetre(Widget* obj)
         else
         {
             gtk_window_set_default_size(window, 800, 600);
-        }
-    }
-
-
-    // Couleur de fond
-    const char* couleur_fond = get_attribut("couleur_fond", obj);
-    if (couleur_fond)
-    {
-        GdkRGBA rgba;
-        if (gdk_rgba_parse(&rgba, couleur_fond))
-        {
-            gchar* css_color = gdk_rgba_to_string(&rgba);
-
-            gtk_widget_set_name(obj->Widget_Ptr, "custom_widget");
-
-            // Créer le provider CSS
-            GtkCssProvider* provider = gtk_css_provider_new();
-            size_t css_len = strlen("#custom_widget { background-image: none; background-color: ")
-                             + strlen(css_color)
-                             + strlen("; }")
-                             + 1; // Pour le caractère nul
-
-            char* css = malloc(css_len);
-            if (css != NULL)
-            {
-                snprintf(css, css_len,
-                         "#custom_widget { background-image: none; background-color: %s; }",
-                         css_color);
-
-                // Appliquer le CSS
-                gtk_css_provider_load_from_data(provider, css, -1, NULL);
-
-                // Ajouter le provider au widget
-                GtkStyleContext* context = gtk_widget_get_style_context(obj->Widget_Ptr);
-                gtk_style_context_add_provider(context,
-                                               GTK_STYLE_PROVIDER(provider),
-                                               GTK_STYLE_PROVIDER_PRIORITY_USER);
-
-                free(css);  // Libérer notre allocation
-            }
-
-            // Nettoyage
-            g_free(css_color);
-            g_object_unref(provider);
         }
     }
 
@@ -148,8 +102,8 @@ void apply_attribut_fenetre(Widget* obj)
 
     if (x_str != NULL && y_str != NULL)
     {
-        int x = atoi(x_str);
-        int y = atoi(y_str);
+        long x = string_to_long("x",x_str);
+        long y = string_to_long("y",y_str);
         gtk_window_move(window, x, y);
     }
 
@@ -158,11 +112,7 @@ void apply_attribut_fenetre(Widget* obj)
     if (position_auto != NULL)
     {
         // Table de correspondance
-        static const struct
-        {
-            const char* nom;
-            GtkWindowPosition position;
-        } position_mapping[] =
+        mapping_value position_mapping[] =
         {
             {"centre", GTK_WIN_POS_CENTER},
             {"souris", GTK_WIN_POS_MOUSE}
@@ -175,9 +125,11 @@ void apply_attribut_fenetre(Widget* obj)
             {
                 gtk_window_set_position(window, position_mapping[i].position);
 
-                break;
+                goto suivant2;
             }
         }
+        print_error_mapping_value("position_auto",position_mapping);
+        suivant2:
     }
 
     // Redimensionnable
@@ -193,5 +145,13 @@ void apply_attribut_fenetre(Widget* obj)
     {
         gtk_window_set_modal(window, to_bool(modale));
     }
+
+    const char* couleur_fond = get_attribut("couleur_fond", obj);
+    if (couleur_fond != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-background-color",couleur_fond);
+    }
+
+
 
 }

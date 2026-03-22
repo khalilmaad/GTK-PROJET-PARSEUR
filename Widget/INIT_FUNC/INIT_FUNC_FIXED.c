@@ -8,8 +8,19 @@ void init_fixed(Widget* obj)
     obj->Widget_Ptr = gtk_fixed_new();
 
     char* tableau_enfant[] =
-    {"expander","notebook","stack","stackswitcher","grid","searchentry","entry","scrollbar","overlay","menuitem","menubar","menu","label","image",
-                    "headerbar","frame","checkbutton","calendrier","buttonradio","button","box","actionbar","signal"};
+    {
+        "actionbar","box","button","buttonradio","calendrier",
+        "checkbutton","entry","frame","headerbar","image",
+        "label","menu","menubar","menuitem","overlay","scrollbar",
+        "searchentry","grid","paned","notebook","stack","stackswitcher",
+        "expander","fixed","layout","revealer","listbox","flowbox","buttonbox",
+        "toolbar","toolitem","separatortoolitem","statusbar","infobar",
+        "searchbar","togglebutton","linkbutton","spinbutton","switch",
+        "scalebutton","menubutton","progressbar","levelbar","spinner",
+        "scale","colorbutton","fontbutton","filechoosebutton","checkmenuitem",
+        "radiomenuitem","separatormenuitem","comboboxtext","comboboxtextentry",
+        "separator","signal"
+    };
 
     obj->Nbre_Attribut = 0;
     obj->Nbre_enfant = sizeof(tableau_enfant) / sizeof(tableau_enfant[0]);

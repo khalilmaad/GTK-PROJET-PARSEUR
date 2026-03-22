@@ -1,5 +1,6 @@
 #include "INIT_FUNC.h"
 #include "../APPLY_FUNC/APPLY_FUNC.h"
+#include "../SET_CHILD_FUNC/SET_CHILD_FUNC.h"
 #include "../GENERAL/Widget.h"
 void init_comboboxtext_or_comboboxtextentry(Widget* obj, _Bool Search);
 
@@ -28,6 +29,20 @@ void init_comboboxtext_or_comboboxtextentry(Widget* obj, _Bool Search)
     Attributs tableau_attribut[] =
     {
         {"selection",      strdup("0")},
+        {"couleur_fond",       strdup("")},
+        {"coin_arrondi",       strdup("")},
+        {"margin",             strdup("")},
+        {"margin_top",         strdup("")},
+        {"margin_bottom",      strdup("")},
+        {"margin_left",        strdup("")},
+        {"margin_right",       strdup("")},
+        {"bordure",            strdup("")},
+        {"box_shadow",         strdup("")},
+        {"couleur_label",      strdup("")},
+        {"font_weight",        strdup("")},
+        {"font_size",          strdup("")},
+        {"font_family",          strdup("")},
+        {"font_style",        strdup("")},
     };
 
     char* tableau_enfant[] =

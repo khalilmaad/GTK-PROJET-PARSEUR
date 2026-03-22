@@ -10,10 +10,16 @@ void init_infobar(Widget* obj)
 
     Attributs tableau_attribut[] =
     {
-        {"message",                       strdup("")},
-        {"type_message",                       strdup("")},
-        {"label_ok",                  strdup("")},
-        {"label_cancel",                strdup("")},
+        {"message",            strdup("Hello world !!!")},
+        {"type_message",       strdup("info")},
+        {"label_ok",           strdup("")},
+        {"label_cancel",       strdup("cancel")},
+        {"couleur_fond",       strdup("")},
+        {"coin_arrondi",       strdup("")},
+        {"couleur_label",      strdup("")},
+        {"font_weight",        strdup("")},
+        {"font_size",          strdup("")},
+        {"font_family",        strdup("")},
     };
 
     char* tableau_enfant[] =

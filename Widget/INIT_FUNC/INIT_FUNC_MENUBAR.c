@@ -9,7 +9,7 @@ void init_menubar(Widget* obj)
 {
     obj->Widget_Ptr = gtk_menu_bar_new();
 
-    char* tableau_enfant[] = {"menuitem"};
+    char* tableau_enfant[] = {"menuitem","separatormenuitem",};
 
     obj->Nbre_Attribut = 0;
     obj->Nbre_enfant = sizeof(tableau_enfant) / sizeof(tableau_enfant[0]);

@@ -11,10 +11,11 @@ void init_menu(Widget* obj)
     {
         {"horizontal",           strdup("false")},
         {"x",         strdup("0")},
-        {"y",         strdup("1")}
+        {"y",         strdup("1")},
+
     };
 
-    char* tableau_enfant[] = {"menuitem","radiomenuitem","checkmenuitem"};
+    char* tableau_enfant[] = {"separatormenuitem","menuitem","radiomenuitem","checkmenuitem"};
 
     obj->Nbre_Attribut = sizeof(tableau_attribut) / sizeof(tableau_attribut[0]);
     obj->Nbre_enfant = sizeof(tableau_enfant) / sizeof(tableau_enfant[0]);

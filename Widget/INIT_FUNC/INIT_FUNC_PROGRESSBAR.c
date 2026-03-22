@@ -10,13 +10,26 @@ void init_progressbar(Widget* obj)
 
     Attributs tableau_attribut[] =
     {
-        {"value",                       strdup("0.0")},
+        {"value",                       strdup("0,0")},
         {"afficher_texte",              strdup("true")}, //true or false
         {"texte",                       strdup("Chargement...")},
         {"mode_indetermine",            strdup("true")},
         {"duree_ms",                    strdup("10000")},
         {"orientation",                 strdup("true")},
-        {"mode_inverse",                strdup("false")}
+        {"mode_inverse",                strdup("false")},
+        {"couleur_fond",       strdup("")},
+        {"coin_arrondi",       strdup("")},
+        {"margin",             strdup("")},
+        {"margin_top",         strdup("")},
+        {"margin_bottom",      strdup("")},
+        {"margin_left",        strdup("")},
+        {"margin_right",       strdup("")},
+        {"bordure",            strdup("")},
+        {"box_shadow",         strdup("")},
+        {"couleur_label",      strdup("")},
+        {"font_weight",        strdup("")},
+        {"font_size",          strdup("")},
+        {"font_family",          strdup("")},
     };
 
     char* tableau_enfant[] =

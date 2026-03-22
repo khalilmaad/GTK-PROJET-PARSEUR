@@ -26,11 +26,7 @@ void apply_attribut_scale(Widget* obj)
     if (pos_value != NULL)
     {
         // Table de correspondance
-        static const struct
-        {
-            const char* nom;
-            GtkPositionType position;
-        } alignement[] =
+        mapping_value alignement[] =
         {
             {"haut", GTK_POS_TOP},
             {"bas",   GTK_POS_BOTTOM},
@@ -45,9 +41,11 @@ void apply_attribut_scale(Widget* obj)
             if (strcmp(pos_value, alignement[i].nom) == 0)
             {
                 gtk_scale_set_value_pos(scale, alignement[i].position);
-                break;
+                 goto suivant;
             }
         }
+        print_error_mapping_value("pos_value",alignement);
+        suivant:
     }
 
 
@@ -55,23 +53,21 @@ void apply_attribut_scale(Widget* obj)
     if (min)
     {
         GtkAdjustment *adj = gtk_range_get_adjustment(GTK_RANGE(scale));
-        gtk_adjustment_set_lower(adj, atof(min));  // nouveau min
-        gtk_adjustment_changed(adj);
+        gtk_adjustment_set_lower(adj, string_to_double("min",min));  // nouveau min
     }
 
     const char* max = get_attribut("max", obj);
     if (max)
     {
         GtkAdjustment *adj = gtk_range_get_adjustment(GTK_RANGE(scale));
-        gtk_adjustment_set_upper(adj, atof(max)); // nouveau max
-        gtk_adjustment_changed(adj);
+        gtk_adjustment_set_upper(adj, string_to_double("max",max)); // nouveau max
     }
 
 
     const char* value = get_attribut("value", obj);
     if (value != NULL)
     {
-        gtk_range_set_value(GTK_RANGE(scale), atof(value));
+        gtk_range_set_value(GTK_RANGE(scale), string_to_double("value",value));
     }
 
 }

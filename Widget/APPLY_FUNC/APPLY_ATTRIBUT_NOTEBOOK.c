@@ -27,11 +27,7 @@ void apply_attribut_notebook(Widget* obj)
     const char* pos_tab = get_attribut("pos_tab",obj);
     if (pos_tab)
     {
-        static const struct
-        {
-            const char* nom;
-            GtkPositionType type;
-        } pos_tab_mapping[] =
+        mapping_value pos_tab_mapping[] =
         {
             {"haut", GTK_POS_TOP},
             {"bas",  GTK_POS_BOTTOM},
@@ -45,10 +41,12 @@ void apply_attribut_notebook(Widget* obj)
         {
             if (strcmp(pos_tab, pos_tab_mapping[i].nom) == 0)
             {
-                gtk_notebook_set_tab_pos(notebook, pos_tab_mapping[i].type);
-                break;
+                gtk_notebook_set_tab_pos(notebook, pos_tab_mapping[i].position);
+                goto suivant;
             }
         }
+        print_error_mapping_value("pos_tab",pos_tab_mapping);
+        suivant:
     }
 
     // Modale

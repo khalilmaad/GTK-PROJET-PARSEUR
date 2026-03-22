@@ -183,6 +183,8 @@ void traiterBaliseOuvrante(ParserXML* parser, const char* ligne, size_t* pos, in
         exit(1);
     }
 
+    if(!compare(nomWidget,"!--")) goto suivant;
+
     // Transformer en minuscules
     to_lowercase(nomWidget);
 
@@ -205,6 +207,15 @@ void traiterBaliseOuvrante(ParserXML* parser, const char* ligne, size_t* pos, in
     }
 
 
+
+
+
+    // Appliquer les attributs
+    if (widget->apply_attribut_func) {
+        widget->apply_attribut_func(widget);
+    }
+    printf("\n\033[1;32m[Succes]\033[0m widget \033[1;34m%s\033[0m pret a l'emploi!\n",nomWidget);
+
     // Gérer la hiérarchie
     if (!pile_empty(parser)) {
         Widget* parent = pile_top(parser);
@@ -222,12 +233,6 @@ void traiterBaliseOuvrante(ParserXML* parser, const char* ligne, size_t* pos, in
         }
     }
 
-
-    // Appliquer les attributs
-    if (widget->apply_attribut_func) {
-        widget->apply_attribut_func(widget);
-    }
-    printf("\n\n\033[1;32m[Succes]\033[0m widget \033[1;34m%s\033[0m pret a l'emploi!",nomWidget);
     printf("\n\n\033[1;35m====================<\\\033[0m\033[1;34m%s\033[0m\033[1;35m>====================\033[0m\n\n",nomWidget);
 
     // Balise auto-fermante
@@ -237,6 +242,8 @@ void traiterBaliseOuvrante(ParserXML* parser, const char* ligne, size_t* pos, in
     }
 
     gerer_widget_with_id(parser,widget,numLigne);
+
+    suivant:
 
     // Mettre à jour la position
     *pos = (fin_balise - ligne);

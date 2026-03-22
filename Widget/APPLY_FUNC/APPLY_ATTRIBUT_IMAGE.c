@@ -28,7 +28,7 @@ void apply_attribut_image(Widget* obj)
     const char* taille_str = get_attribut("taille", obj);
     if (taille_str != NULL)
     {
-        int taille = atoi(taille_str);
+        long taille = string_to_long("taille",taille_str);
         gtk_image_set_pixel_size(image, taille);
     }
 }

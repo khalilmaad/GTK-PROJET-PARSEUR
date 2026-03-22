@@ -11,11 +11,11 @@ void init_signal(Widget* obj)
 
     Attributs tableau_attribut[]=
     {
-        {"sible",           strdup("")},//ID widgetsible
+        {"sible",            strdup("")},//ID widgetsible
         {"fonction",         strdup("")},//afficher , cacher, modifier, detruire
-        {"attribut_sible",         strdup("")},// nom attribut à siblé
-        {"attribut_valeur",    strdup("")},   // la nouvelle valeur de l'attribut siblé
-        {"type",    strdup("clicked")},
+        {"type",             strdup("clicked")},
+        {"nom_attribut",     strdup("")},
+        {"valeur_attribut",    strdup("")},
     };
 
     char* tableau_enfant[] = {"fenetre"};

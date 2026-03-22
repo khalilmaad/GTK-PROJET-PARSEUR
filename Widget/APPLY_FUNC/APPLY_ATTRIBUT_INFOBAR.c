@@ -10,11 +10,7 @@ void apply_attribut_infobar(Widget* obj)
     const char* type_message = get_attribut("type_message",obj);
     if (type_message)
     {
-        static const struct
-        {
-            const char* nom;
-            GtkMessageType type;
-        } type_message_mapping[] =
+        mapping_value type_message_mapping[] =
         {
             {"info", GTK_MESSAGE_INFO},
             {"warning",  GTK_MESSAGE_WARNING},
@@ -29,10 +25,12 @@ void apply_attribut_infobar(Widget* obj)
         {
             if (strcmp(type_message, type_message_mapping[i].nom) == 0)
             {
-                gtk_info_bar_set_message_type(infobar, type_message_mapping[i].type);
-                break;
+                gtk_info_bar_set_message_type(infobar, type_message_mapping[i].position);
+                goto suivant;
             }
         }
+        print_error_mapping_value("type_message",type_message_mapping);
+        suivant:
     }
 
     const char* message = get_attribut("message",obj);
@@ -62,4 +60,35 @@ void apply_attribut_infobar(Widget* obj)
                         label_cancel,
                         GTK_RESPONSE_CANCEL);
     }
+
+    const char* couleur_fond = get_attribut("couleur_fond", obj);
+    if (couleur_fond != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-background-color",couleur_fond);
+    }
+
+    const char* couleur_label = get_attribut("couleur_label", obj);
+    if (couleur_label != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-color",couleur_label);
+    }
+
+    const char* font_weight = get_attribut("font_weight", obj);
+    if (font_weight != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-font-weight",font_weight);
+    }
+
+    const char* font_size = get_attribut("font_size", obj);
+    if (font_size != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-font-size",font_size);
+    }
+
+    const char* font_family = get_attribut("font_family", obj);
+    if (font_family != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-font-family",font_family);
+    }
+
 }

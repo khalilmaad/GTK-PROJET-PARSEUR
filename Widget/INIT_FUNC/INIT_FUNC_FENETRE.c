@@ -12,7 +12,6 @@ void init_fenetre(Widget* obj)
         {"titre",           strdup("")},
         {"largeur",         strdup("800")},
         {"hauteur",         strdup("600")},
-        {"couleur_fond",    strdup("#FFFFFF")},
         {"icone",           strdup("")},
         {"type_icone",      strdup("false")},
         {"x",               strdup("")},
@@ -21,10 +20,24 @@ void init_fenetre(Widget* obj)
         {"redimensionnable",strdup("")},
         {"type_fenetre",    strdup("normal")},
         {"modale",          strdup("false")},
+        {"couleur_fond",    strdup("#FFFFFF")},
+
     };
 
-    char* tableau_enfant[] = {"grid","searchentry","entry","scrollbar","overlay","menuitem","menubar","menu","label","image",
-                    "headerbar","frame","checkbutton","calendrier","buttonradio","button","box","actionbar","signal"};
+    char* tableau_enfant[] =
+    {
+        "actionbar","box","button","buttonradio","calendrier",
+        "checkbutton","entry","frame","headerbar","image",
+        "label","menu","menubar","menuitem","overlay","scrollbar",
+        "searchentry","grid","paned","notebook","stack","stackswitcher",
+        "expander","fixed","layout","revealer","listbox","flowbox","buttonbox",
+        "toolbar","toolitem","separatortoolitem","statusbar","infobar",
+        "searchbar","togglebutton","linkbutton","spinbutton","switch",
+        "scalebutton","menubutton","progressbar","levelbar","spinner",
+        "scale","colorbutton","fontbutton","filechoosebutton","checkmenuitem",
+        "radiomenuitem","separatormenuitem","comboboxtext","comboboxtextentry",
+        "separator","signal"
+    };
 
     obj->Nbre_Attribut = sizeof(tableau_attribut) / sizeof(tableau_attribut[0]);
     obj->Nbre_enfant = sizeof(tableau_enfant) / sizeof(tableau_enfant[0]);

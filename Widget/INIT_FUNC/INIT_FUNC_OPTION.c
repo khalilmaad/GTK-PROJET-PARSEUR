@@ -14,10 +14,9 @@ void init_option(Widget* obj)
         {"texte",           strdup("Nouveau option")},
     };
 
-    char* tableau_enfant[] = {"fenetre"};
 
     obj->Nbre_Attribut = sizeof(tableau_attribut) / sizeof(tableau_attribut[0]);
-    obj->Nbre_enfant = sizeof(tableau_enfant) / sizeof(tableau_enfant[0]);
+    obj->Nbre_enfant = 0;
 
     obj->List_Attribut = (Attributs*)malloc(obj->Nbre_Attribut * sizeof(Attributs));
     obj->List_widget_enfant =(char**) malloc(obj->Nbre_enfant * sizeof(char*));
@@ -26,5 +25,4 @@ void init_option(Widget* obj)
     obj->set_child = NULL;
 
     memcpy(obj->List_Attribut, tableau_attribut, obj->Nbre_Attribut * sizeof(Attributs));
-    memcpy(obj->List_widget_enfant, tableau_enfant, obj->Nbre_enfant * sizeof(char*));
 }

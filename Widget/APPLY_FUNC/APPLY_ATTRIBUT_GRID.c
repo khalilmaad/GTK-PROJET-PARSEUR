@@ -9,7 +9,7 @@ void apply_attribut_grid(Widget* obj)
     const char* espacement_colonne_str = get_attribut("espacement_colonne", obj);
     if (espacement_colonne_str != NULL)
     {
-        int espacement_colonne = atoi(espacement_colonne_str);
+        long espacement_colonne = string_to_long("espacement_colonne",espacement_colonne_str);
 
         if (espacement_colonne >= 0)
         {
@@ -20,7 +20,7 @@ void apply_attribut_grid(Widget* obj)
     const char* espacement_ligne_str = get_attribut("espacement_ligne", obj);
     if (espacement_ligne_str != NULL)
     {
-        int espacement_ligne = atoi(espacement_ligne_str);
+        long espacement_ligne = string_to_long("espacement_ligne",espacement_ligne_str);
 
         if (espacement_ligne >= 0)
         {
@@ -61,25 +61,25 @@ void apply_attribut_grid(Widget* obj)
     const char* margin_top = get_attribut("margin_top", obj);
     if (margin_top != NULL)
     {
-        gtk_widget_set_margin_top(obj->Widget_Ptr,atoi(margin_top));
+        gtk_widget_set_margin_top(obj->Widget_Ptr,string_to_long("margin_top",margin_top));
     }
 
     const char* margin_bottom = get_attribut("margin_bottom", obj);
     if (margin_bottom != NULL)
     {
-        gtk_widget_set_margin_bottom(obj->Widget_Ptr,atoi(margin_bottom));
+        gtk_widget_set_margin_bottom(obj->Widget_Ptr,string_to_long("margin_bottom",margin_bottom));
     }
 
     const char* margin_left = get_attribut("margin_left", obj);
     if (margin_left != NULL)
     {
-        gtk_widget_set_margin_start(obj->Widget_Ptr,atoi(margin_left));
+        gtk_widget_set_margin_start(obj->Widget_Ptr,string_to_long("margin_left",margin_left));
     }
 
     const char* margin_right = get_attribut("margin_right", obj);
     if (margin_right != NULL)
     {
-        gtk_widget_set_margin_end(obj->Widget_Ptr,atoi(margin_right));
+        gtk_widget_set_margin_end(obj->Widget_Ptr,string_to_long("margin_right",margin_right));
     }
 
     const char* bordure = get_attribut("bordure", obj);

@@ -10,13 +10,13 @@ void init_levelbar(Widget* obj)
 
     Attributs tableau_attribut[] =
     {
-        {"min",                     strdup("0.0")},
-        {"max",                     strdup("1.0")},
-        {"value",                   strdup("0.0")},
+        {"min",                     strdup("0,0")},
+        {"max",                     strdup("1,0")},
+        {"value",                   strdup("0,5")},
         {"orientation",             strdup("")},
         {"mode",                    strdup("continu")},
-        {"level_low",               strdup("0.3")},
-        {"level_high",              strdup("0.8")},
+        {"level_low",               strdup("0,3")},
+        {"level_high",              strdup("0,8")},
     };
 
     char* tableau_enfant[] =

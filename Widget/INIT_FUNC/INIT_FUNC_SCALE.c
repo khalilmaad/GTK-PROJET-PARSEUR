@@ -13,8 +13,8 @@ void init_scale(Widget* obj)
 
     Attributs tableau_attribut[] =
     {
-        {"min",                     strdup("0.0")},
-        {"max",                     strdup("100.0")},
+        {"min",                     strdup("0,0")},
+        {"max",                     strdup("100,0")},
         {"pos_value",               strdup("gauche")},
         {"value",                   strdup("")},
         {"aff_valeur_cote_curseur", strdup("true")},

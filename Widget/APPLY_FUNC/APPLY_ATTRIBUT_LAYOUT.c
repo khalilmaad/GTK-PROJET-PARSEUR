@@ -10,6 +10,6 @@ void apply_attribut_layout(Widget* obj)
     const char* taille_str = get_attribut("taille", obj);
     if (taille_str != NULL)
     {
-        gtk_layout_set_size(layout, atoi(taille_str), atoi(taille_str));
+        gtk_layout_set_size(layout, string_to_long("taille",taille_str), string_to_long("taille",taille_str));
     }
 }

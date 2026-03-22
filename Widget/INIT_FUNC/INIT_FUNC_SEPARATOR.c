@@ -1,17 +1,16 @@
 #include "INIT_FUNC.h"
 #include "../APPLY_FUNC/APPLY_FUNC.h"
-#include "../GENERAL/Widget.h"
 #include "../SET_CHILD_FUNC/SET_CHILD_FUNC.h"
+#include "../GENERAL/Widget.h"
 
 
-void init_toolitem(Widget* obj)
+void init_separator(Widget* obj)
 {
-    obj->Widget_Ptr = GTK_WIDGET(gtk_tool_button_new(NULL, "Nouveau"));
+    obj->Widget_Ptr = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
 
     Attributs tableau_attribut[] =
     {
-        {"label",             strdup("")},
-        {"icone",             strdup("")},
+        {"orientation",        strdup("")},
         {"couleur_fond",       strdup("")},
         {"coin_arrondi",       strdup("")},
         {"margin",             strdup("")},
@@ -27,20 +26,16 @@ void init_toolitem(Widget* obj)
         {"font_family",          strdup("")},
     };
 
-    char* tableau_enfant[] =
-    {
-        "signal"
-    };
-
     obj->Nbre_Attribut = sizeof(tableau_attribut) / sizeof(tableau_attribut[0]);
-    obj->Nbre_enfant = sizeof(tableau_enfant) / sizeof(tableau_enfant[0]);
+    obj->Nbre_enfant = 0;
 
     obj->List_Attribut = (Attributs*)malloc(obj->Nbre_Attribut * sizeof(Attributs));
-    obj->List_widget_enfant = (char**)malloc(obj->Nbre_enfant * sizeof(char*));
+    obj->List_widget_enfant = NULL;
 
-    obj->apply_attribut_func = apply_attribut_toolitem;
-    obj->set_child = set_child_default;
+    obj->apply_attribut_func = apply_attribut_separator;
+    obj->set_child = NULL;
 
     // Copier les attributs
     memcpy(obj->List_Attribut, tableau_attribut, obj->Nbre_Attribut * sizeof(Attributs));
+
 }

@@ -33,4 +33,29 @@ void apply_attribut_headerbar(Widget* obj)
     {
         gtk_header_bar_set_show_close_button(headerbar, to_bool(afficher_button_fermeture));
     }
+
+
+    const char* couleur_label = get_attribut("couleur_label", obj);
+    if (couleur_label != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-color",couleur_label);
+    }
+
+    const char* font_style = get_attribut("font_style", obj);
+    if (font_style != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-font-style",font_style);
+    }
+
+    const char* font_size = get_attribut("font_size", obj);
+    if (font_size != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-font-size",font_size);
+    }
+
+    const char* font_family = get_attribut("font_family", obj);
+    if (font_family != NULL)
+    {
+        apply_css(obj->Widget_Ptr,"ma-font-family",font_family);
+    }
 }

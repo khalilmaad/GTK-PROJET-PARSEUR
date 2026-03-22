@@ -16,9 +16,17 @@ void init_scrollbar(Widget* obj)
 
     char* tableau_enfant[] =
     {
-        "button", "actionbar", "box", "scrollbar",
-        "overlay", "calendrier", "checkbutton", "entry",
-        "searchentry", "frame", "image", "label"
+        "actionbar","box","button","buttonradio","calendrier",
+        "checkbutton","entry","frame","headerbar","image",
+        "label","menu","menubar","menuitem","overlay","scrollbar",
+        "searchentry","grid","paned","notebook","stack","stackswitcher",
+        "expander","fixed","layout","revealer","listbox","flowbox","buttonbox",
+        "toolbar","toolitem","separatortoolitem","statusbar","infobar",
+        "searchbar","togglebutton","linkbutton","spinbutton","switch",
+        "scalebutton","menubutton","progressbar","levelbar","spinner",
+        "scale","colorbutton","fontbutton","filechoosebutton","checkmenuitem",
+        "radiomenuitem","separatormenuitem","comboboxtext","comboboxtextentry",
+        "separator","signal"
     };
 
     obj->Nbre_Attribut = sizeof(tableau_attribut) / sizeof(tableau_attribut[0]);

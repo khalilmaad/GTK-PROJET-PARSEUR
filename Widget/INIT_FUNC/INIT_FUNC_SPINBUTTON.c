@@ -13,12 +13,25 @@ void init_spinbutton(Widget* obj)
 
     Attributs tableau_attribut[] =
     {
-        {"min",                     strdup("0.0")},
-        {"max",                     strdup("100.0")},
-        {"step",                    strdup("1.0")},
-        {"page_increment",          strdup("10.0")},
+        {"min",                     strdup("0,0")},
+        {"max",                     strdup("100,0")},
+        {"step",                    strdup("1,0")},
+        {"page_increment",          strdup("10,0")},
         {"value",                   strdup("")},
         {"only_numeric",            strdup("false")},
+        {"couleur_fond",       strdup("")},
+        {"coin_arrondi",       strdup("")},
+        {"margin",             strdup("")},
+        {"margin_top",         strdup("")},
+        {"margin_bottom",      strdup("")},
+        {"margin_left",        strdup("")},
+        {"margin_right",       strdup("")},
+        {"bordure",            strdup("")},
+        {"box_shadow",         strdup("")},
+        {"couleur_label",      strdup("")},
+        {"font_weight",        strdup("")},
+        {"font_size",          strdup("")},
+        {"font_family",          strdup("")},
     };
 
     char* tableau_enfant[] =

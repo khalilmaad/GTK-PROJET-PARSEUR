@@ -8,5 +8,5 @@ void set_child_searchbar( Widget* pere,Widget* fils)
 
     gtk_container_add(GTK_CONTAINER(pere->Widget_Ptr),fils->Widget_Ptr);
     gtk_search_bar_connect_entry(GTK_SEARCH_BAR(pere->Widget_Ptr),GTK_ENTRY(fils->Widget_Ptr));
-    printf("\n\033[1;32m[Liaison]\033[0m Liaison au parent \033[1;34m%s\033[0m",pere->Nom);
+    print_succes_liaison(pere->Nom);
 }

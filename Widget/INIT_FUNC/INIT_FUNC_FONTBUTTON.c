@@ -12,6 +12,19 @@ void init_fontbutton(Widget* obj)
     {
         {"titre",                       strdup("")},
         {"label",                       strdup("")},
+        {"couleur_fond",       strdup("")},
+        {"coin_arrondi",       strdup("")},
+        {"margin",             strdup("")},
+        {"margin_top",         strdup("")},
+        {"margin_bottom",      strdup("")},
+        {"margin_left",        strdup("")},
+        {"margin_right",       strdup("")},
+        {"bordure",            strdup("")},
+        {"box_shadow",         strdup("")},
+        {"couleur_label",      strdup("")},
+        {"font_weight",        strdup("")},
+        {"font_size",          strdup("")},
+        {"font_family",          strdup("")},
     };
 
     char* tableau_enfant[] =

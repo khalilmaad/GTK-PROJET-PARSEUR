@@ -111,6 +111,8 @@ void init_comboboxtext(Widget* obj);
 
 void init_comboboxtextentry(Widget* obj);
 
+void init_separator(Widget* obj);
+
 void init_option(Widget* obj);
 
 void init_signal(Widget*);

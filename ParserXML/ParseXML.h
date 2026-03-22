@@ -6,9 +6,6 @@
 
 #define BUFFER_SIZE 4096
 
-typedef gboolean (*Gtk_Callback_with_event)(GtkWidget*,GdkEvent*, gpointer);
-typedef void (*Gtk_Callback)(GtkWidget*, gpointer);
-
 //forward declaration
 typedef struct wd Widget;
 
@@ -78,9 +75,13 @@ void afficher(GtkWidget*, gpointer);
 
 void cacher(GtkWidget*, gpointer);
 
+void afficher_cacher(GtkWidget* widget,gpointer data);
+
 void detruire(GtkWidget*, gpointer);
 
 void modifier(GtkWidget*, gpointer);
+
+void recuper_modifier(GtkWidget* widget,gpointer data);
 
 void cacher_avec_animation(GtkWidget* widget,gpointer data);
 
@@ -89,6 +90,14 @@ void afficher_avec_animation(GtkWidget* widget,gpointer data);
 void afficher_cacher_avec_animation(GtkWidget* widget,gpointer data);
 
 void connecte_stack_with_stackswitcher(GtkWidget*,gpointer);
+
+void afficher_text_entry_terminal(GtkWidget* widget,gpointer data);
+
+void modifier_couleur_avec_colorbutton(GtkWidget* widget, gpointer data);
+
+void modifier_police(GtkWidget* widget, gpointer data);
+
+void recuper_modifier_avec_filechooser(GtkWidget* widget, gpointer data);
 
 
 gboolean afficher_avec_event(GtkWidget*,GdkEvent*, gpointer);

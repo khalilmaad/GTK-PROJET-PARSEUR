@@ -14,14 +14,13 @@ void set_child_layout(Widget* pere,Widget* fils)
     if (pos_x && pos_y)
     {
 
-        gtk_layout_put(GTK_LAYOUT(pere->Widget_Ptr), fils->Widget_Ptr,atoi(pos_x),atoi(pos_y));
+        gtk_layout_put(GTK_LAYOUT(pere->Widget_Ptr), fils->Widget_Ptr,string_to_long("pos_x",pos_x),string_to_long("pos_y",pos_y));
     }
     else
     {
-        printf("\n\033[1;31m[Liaison]\033[0m Liaison au parent \033[1;34m%s\033[0m",pere->Nom);
-        printf("\n\033[1;34mMessage : \033[1;31mEchec liaison au parente -> manque attribut indiquant la position d'insertion exemple (pos_x=\"0\" pos_y=\"0\")");
-        exit(1);
+        print_error_liaison(pere->Nom);
+        print_message_error_liaison("(pos_x=\"0\" pos_y=\"0\")");
     }
 
-    printf("\n\033[1;32m[Liaison]\033[0m Liaison au parent \033[1;34m%s\033[0m",pere->Nom);
+    print_succes_liaison(pere->Nom);
 }
