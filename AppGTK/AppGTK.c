@@ -1,6 +1,9 @@
 #include "AppGTK.h"
 #include "../ParserXML/ParseXML.h"
 #include "../Widget/GENERAL/Widget.h"
+#include "../Simulation/SIMULATION.h"
+
+Widget* Racine_node;
 
 void AppGTK_afficher_interface(Widget* arb)
 {

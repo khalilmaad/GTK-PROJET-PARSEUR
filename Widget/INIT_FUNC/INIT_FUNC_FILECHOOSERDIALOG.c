@@ -4,19 +4,21 @@
 #include "../SET_CHILD_FUNC/SET_CHILD_FUNC.h"
 
 
-void init_button(Widget* obj)
+void init_filechooserdialog(Widget* obj)
 {
-    obj->Widget_Ptr = gtk_button_new_with_mnemonic("_Ouvrir");
+    obj->Widget_Ptr = gtk_file_chooser_dialog_new(
+                          "Ouvrir un fichier",
+                          NULL,
+                          GTK_FILE_CHOOSER_ACTION_OPEN,
+                          "Annuler", GTK_RESPONSE_CANCEL,
+                          "Ouvrir",  GTK_RESPONSE_ACCEPT,
+                          NULL);
 
     Attributs tableau_attribut[] =
     {
-        {"label",               strdup("")},
-        {"icone",                       strdup("")},
-        {"type_icone",                  strdup("false")},
-        {"taille_icone",                strdup("24")},
-        {"position_icone",              strdup("gauche")},
-        {"toujours_afficher_icone",     strdup("true")},
-        {"use_underline",               strdup("true")},
+        {"type",               strdup("")},
+        {"titre",              strdup("")},
+        {"couleur_fond",       strdup("")},
         {"coin_arrondi",       strdup("")},
         {"margin",             strdup("")},
         {"margin_top",         strdup("")},
@@ -24,12 +26,11 @@ void init_button(Widget* obj)
         {"margin_left",        strdup("")},
         {"margin_right",       strdup("")},
         {"bordure",            strdup("")},
+        {"box_shadow",         strdup("")},
         {"couleur_label",      strdup("")},
         {"font_weight",        strdup("")},
         {"font_size",          strdup("")},
-        {"font_style",        strdup("")},
         {"font_family",          strdup("")},
-        {"couleur_fond",    strdup("")},
     };
 
     char* tableau_enfant[] =
@@ -43,7 +44,7 @@ void init_button(Widget* obj)
     obj->List_Attribut = (Attributs*)malloc(obj->Nbre_Attribut * sizeof(Attributs));
     obj->List_widget_enfant = (char**)malloc(obj->Nbre_enfant * sizeof(char*));
 
-    obj->apply_attribut_func = apply_attribut_button;
+    obj->apply_attribut_func = apply_attribut_filechooserdialog;
     obj->set_child = set_child_default;
 
     // Copier les attributs

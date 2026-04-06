@@ -29,6 +29,7 @@ void init_comboboxtext_or_comboboxtextentry(Widget* obj, _Bool Search)
     Attributs tableau_attribut[] =
     {
         {"selection",      strdup("0")},
+        {"largeur_entry",         strdup("")},
         {"couleur_fond",       strdup("")},
         {"coin_arrondi",       strdup("")},
         {"margin",             strdup("")},

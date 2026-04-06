@@ -26,7 +26,7 @@ void init_scrollbar(Widget* obj)
         "scalebutton","menubutton","progressbar","levelbar","spinner",
         "scale","colorbutton","fontbutton","filechoosebutton","checkmenuitem",
         "radiomenuitem","separatormenuitem","comboboxtext","comboboxtextentry",
-        "separator","signal"
+        "separator","signal","drawingarea"
     };
 
     obj->Nbre_Attribut = sizeof(tableau_attribut) / sizeof(tableau_attribut[0]);

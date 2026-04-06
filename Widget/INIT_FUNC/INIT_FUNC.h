@@ -113,6 +113,14 @@ void init_comboboxtextentry(Widget* obj);
 
 void init_separator(Widget* obj);
 
+void init_filechooserdialog(Widget* obj);
+
+void init_drawingarea(Widget* obj);
+
+void init_simulation(Widget* obj);
+
+void init_poisson(Widget* obj);
+
 void init_option(Widget* obj);
 
 void init_signal(Widget*);

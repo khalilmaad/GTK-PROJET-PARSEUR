@@ -28,7 +28,7 @@ void init_menubutton(Widget* obj)
         {"font_family",          strdup("")},
     };
 
-    char* tableau_enfant[] = {"signal","menu"};
+    char* tableau_enfant[] = {"signal","menu","listbox"};
 
     obj->Nbre_Attribut = sizeof(tableau_attribut) / sizeof(tableau_attribut[0]);
     obj->Nbre_enfant = sizeof(tableau_enfant) / sizeof(tableau_enfant[0]);

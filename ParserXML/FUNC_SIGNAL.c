@@ -12,6 +12,15 @@ gboolean afficher_avec_event(GtkWidget* widget,GdkEvent *event,gpointer data)
     return TRUE;
 }
 
+
+gboolean exec_main_quit_avec_event(GtkWidget* widget,GdkEvent *event,gpointer data)
+{
+    gtk_main_quit();
+    printf("\nexec_main_quit_avec_event\n");
+
+    return TRUE;
+}
+
 gboolean afficher_avec_event_animation(GtkWidget* widget,GdkEvent *event,gpointer data)
 {
     Widget* obj = (Widget*)data;
@@ -81,6 +90,11 @@ gboolean modifier_avec_event(GtkWidget* widget,GdkEvent *event,gpointer data)
     return TRUE;
 }
 
+void exec_main_quit(GtkWidget* widget,gpointer data)
+{
+    gtk_main_quit();
+    printf("\nexec_main_quit\n");
+}
 
 void afficher(GtkWidget* widget,gpointer data)
 {
@@ -116,7 +130,7 @@ void connecte_stack_with_stackswitcher(GtkWidget* widget,gpointer data)
     Widget* obj = (Widget*)data;
 
     gtk_stack_switcher_set_stack(GTK_STACK_SWITCHER(widget),
-                                  GTK_STACK(obj->fils->Widget_Ptr));
+                                 GTK_STACK(obj->fils->Widget_Ptr));
     printf("\nconnexion reussi\n");
 }
 
@@ -276,6 +290,21 @@ void modifier(GtkWidget* widget,gpointer data)
 }
 
 
+void modifier_simplement(GtkWidget* widget,gpointer data)
+{
+    Widget* obj = (Widget*)data;
+    const char* nom_attribut = get_attribut("nom_attribut",obj);
+    if(nom_attribut)
+    {
+        const char* valeur_attribut = get_attribut("valeur_attribut",obj);
+        if(valeur_attribut && Attribut_existe(nom_attribut,obj->fils))
+        {
+            attributs_add(obj->fils,nom_attribut,valeur_attribut);
+        }
+    }
+}
+
+
 void recuper_modifier(GtkWidget* widget,gpointer data)
 {
     Widget* obj = (Widget*)data;
@@ -294,6 +323,12 @@ void recuper_modifier(GtkWidget* widget,gpointer data)
     }
 }
 
+void maximizer_fenetre(GtkWidget* widget,gpointer data)
+{
+    Widget* obj = (Widget*)data;
+    gtk_window_maximize(GTK_WINDOW(obj->Widget_Ptr));
+}
+
 
 // Callback pour la touche Entrée
 void afficher_text_entry_terminal(GtkWidget* widget,gpointer data)
@@ -305,4 +340,33 @@ void afficher_text_entry_terminal(GtkWidget* widget,gpointer data)
 
     // Effacer après traitement
     gtk_entry_set_text(GTK_ENTRY(obj->Widget_Ptr), "");
+}
+
+
+void recuperer_modifier_avec_filechooserdialog(GtkDialog *dialog, gint response_id, gpointer data)
+{
+    switch (response_id)
+    {
+    case GTK_RESPONSE_ACCEPT:
+        Widget* obj = (Widget*)data;
+        const char* nom_attribut = get_attribut("nom_attribut",obj);
+        if(nom_attribut)
+        {
+            const char* valeur_attribut = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(dialog));
+            if(valeur_attribut && Attribut_existe(nom_attribut,obj->fils))
+            {
+                attributs_add(obj->fils,nom_attribut,valeur_attribut);
+                obj->fils->apply_attribut_func(obj->fils);
+                gtk_widget_show_all(obj->fils->Widget_Ptr);
+            }
+        }
+
+
+    case GTK_RESPONSE_CANCEL:
+
+
+    case GTK_RESPONSE_DELETE_EVENT:
+        gtk_widget_hide(GTK_WIDGET(dialog));
+        break;
+    }
 }

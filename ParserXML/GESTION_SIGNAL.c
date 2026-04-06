@@ -1,5 +1,6 @@
 #include "ParseXML.h"
 #include "../Widget/GENERAL/Widget.h"
+#include "../Simulation/SIMULATION.h"
 
 
 static struct
@@ -7,22 +8,30 @@ static struct
     const char* Nom_fonction_signal;
     void (*func_callback)(GtkWidget*,gpointer);
     gboolean (*func_callback_event)(GtkWidget*,GdkEvent*,gpointer);
+    void (*func_callback_response)(GtkDialog *dialog, gint response_id, gpointer data);
 } List_Fonction_Signal[]=
 {
-    {"afficher",afficher,afficher_avec_event},
-    {"afficher_text_entry_terminal",afficher_text_entry_terminal,NULL},
-    {"cacher",cacher,cacher_avec_event},
-    {"afficher_cacher",afficher_cacher,NULL},
-    {"detruire",detruire,detruire_avec_event},
-    {"modifier",modifier,modifier_avec_event},
-    {"modifier_police",modifier_police},
-    {"recuperer_modifier_avec_entry",recuper_modifier,NULL},
-    {"recuperer_modifier_avec_colorbutton",modifier_couleur_avec_colorbutton,NULL},
-    {"recuperer_modifier_avec_filechooserbutton",recuper_modifier_avec_filechooser,NULL},
-    {"connexion_stackswitcher",connecte_stack_with_stackswitcher,NULL},
-    {"afficher_avec_animation",afficher_avec_animation,afficher_avec_event_animation},
-    {"cacher_avec_animation",cacher_avec_animation,cacher_avec_event_animation},
-    {"afficher_cacher_avec_animation",afficher_cacher_avec_animation,afficher_cacher_avec_event_animation},
+    {"Arreter_program",exec_main_quit,exec_main_quit_avec_event,NULL},
+    {"sauvergarder_fichier",save_file,NULL,NULL},
+    {"charger_simulation",chargement_simulation,NULL,NULL},
+    {"reset_simulation",reset_state,NULL,NULL},
+    {"afficher",afficher,afficher_avec_event,NULL},
+    {"maximizer_fenetre",maximizer_fenetre,NULL,NULL},
+    {"afficher_text_entry_terminal",afficher_text_entry_terminal,NULL,NULL},
+    {"cacher",cacher,cacher_avec_event,NULL},
+    {"afficher_cacher",afficher_cacher,NULL,NULL},
+    {"detruire",detruire,detruire_avec_event,NULL},
+    {"modifier",modifier,modifier_avec_event,NULL},
+    {"modifier_simplement",modifier_simplement,NULL,NULL},
+    {"modifier_police",modifier_police,NULL,NULL},
+    {"recuperer_modifier_avec_entry",recuper_modifier,NULL,NULL},
+    {"recuperer_modifier_avec_colorbutton",modifier_couleur_avec_colorbutton,NULL,NULL},
+    {"recuperer_modifier_avec_filechooserbutton",recuper_modifier_avec_filechooser,NULL,NULL},
+    {"connexion_stackswitcher",connecte_stack_with_stackswitcher,NULL,NULL},
+    {"afficher_avec_animation",afficher_avec_animation,afficher_avec_event_animation,NULL},
+    {"cacher_avec_animation",cacher_avec_animation,cacher_avec_event_animation,NULL},
+    {"afficher_cacher_avec_animation",afficher_cacher_avec_animation,afficher_cacher_avec_event_animation,NULL},
+    {"recuperer_modifier_avec_filechooserdialog",NULL,NULL,recuperer_modifier_avec_filechooserdialog},
 };
 
 void gerer_widget_with_id(ParserXML* Parser, Widget* obj,int numligne)
@@ -51,7 +60,7 @@ void gerer_widget_with_id(ParserXML* Parser, Widget* obj,int numligne)
     }
 }
 
-_Bool Controle_attribut_signal(Widget* signal,_Bool* event)
+_Bool Controle_attribut_signal(Widget* signal,int* event)
 {
 
     const char* type = get_attribut("type",signal);
@@ -60,7 +69,7 @@ _Bool Controle_attribut_signal(Widget* signal,_Bool* event)
     {
         const char* nom_signal;
         int avec_event;  // 1 = 3 param�tres, 0 = 2 param�tres
-    } signaux_attendu[29] =
+    } signaux_attendu[] =
     {
         // Signaux � 2 param�tres
         {"clicked", 0},
@@ -81,6 +90,11 @@ _Bool Controle_attribut_signal(Widget* signal,_Bool* event)
         {"color-set", 0},
         {"font-set", 0},
         {"file-set", 0},
+        //Signaux personnalisé
+        {"fin_sauvegarde", 0},
+        {"debut_sauvegarde", 0},
+        {"debut_recuperation", 0},
+        {"fin_recuperation", 0},
 
         // Signaux � 3 param�tres (avec -event)
         {"delete-event", 1},
@@ -97,6 +111,9 @@ _Bool Controle_attribut_signal(Widget* signal,_Bool* event)
         {"grab-broken-event", 1},
         {"damage-event", 1},
         {"property-notify-event", 1},
+
+
+        {"response", 2},
     };
 
     int nb_signaux = sizeof(signaux_attendu) / sizeof(signaux_attendu[0]);
@@ -155,7 +172,7 @@ fonction_exe:
 
 void appliquer_signal(Widget* signal)
 {
-    _Bool avec_event=0;
+    int avec_event=0;
     if(Controle_attribut_signal(signal,&avec_event))
     {
 
@@ -168,19 +185,27 @@ void appliquer_signal(Widget* signal)
         {
             if(!compare(fonction_utilisee,List_Fonction_Signal[i].Nom_fonction_signal))
             {
-                if (avec_event)
+                switch(avec_event)
                 {
-                    g_signal_connect(signal->Widget_Ptr, type,
-                                     G_CALLBACK(List_Fonction_Signal[i].func_callback_event),
-                                     signal);
-                }
-                else
-                {
+                case 0:
                     g_signal_connect(signal->Widget_Ptr, type,
                                      G_CALLBACK(List_Fonction_Signal[i].func_callback),
                                      signal);
+                    break;
+
+                case 1:
+
+                    g_signal_connect(signal->Widget_Ptr, type,
+                                     G_CALLBACK(List_Fonction_Signal[i].func_callback_event),
+                                     signal);
+                    break;
+
+                case 2:
+                    g_signal_connect(signal->Widget_Ptr, type,
+                                     G_CALLBACK(List_Fonction_Signal[i].func_callback_response),
+                                     signal);
+                    break;
                 }
-                break;
             }
         }
         printf("\n\033[1;32m[Liaison Signal]\033[0mSource = %p Sible = \033[1;34m%s\033[0m ID = \033[1;33m%s\033[0m Fonction = \033[1;34m%s\033[0m",
@@ -189,10 +214,66 @@ void appliquer_signal(Widget* signal)
 
 }
 
+void creation_type_signaux_personnalise()
+{
+    // À faire UNE seule fois au démarrage, avant gtk_main()
+    guint mon_signal_id = g_signal_new(
+                              "fin_sauvegarde",              // nom du signal
+                              GTK_TYPE_WIDGET,           // type GObject auquel il appartient
+                              G_SIGNAL_RUN_FIRST,        // quand les handlers sont appelés
+                              0,                         // offset dans la structure (0 si pas de classe)
+                              NULL,                      // accumulateur (NULL = aucun)
+                              NULL,                      // données accumulateur
+                              g_cclosure_marshal_VOID__VOID,  // marshaller (type des args)
+                              G_TYPE_NONE,               // type de retour
+                              0                          // nombre de paramètres
+                          );
+
+    g_signal_new(
+        "debut_sauvegarde",              // nom du signal
+        GTK_TYPE_WIDGET,           // type GObject auquel il appartient
+        G_SIGNAL_RUN_FIRST,        // quand les handlers sont appelés
+        0,                         // offset dans la structure (0 si pas de classe)
+        NULL,                      // accumulateur (NULL = aucun)
+        NULL,                      // données accumulateur
+        g_cclosure_marshal_VOID__VOID,  // marshaller (type des args)
+        G_TYPE_NONE,               // type de retour
+        0                          // nombre de paramètres
+    );
+
+
+    g_signal_new(
+        "debut_recuperation",              // nom du signal
+        GTK_TYPE_WIDGET,           // type GObject auquel il appartient
+        G_SIGNAL_RUN_FIRST,        // quand les handlers sont appelés
+        0,                         // offset dans la structure (0 si pas de classe)
+        NULL,                      // accumulateur (NULL = aucun)
+        NULL,                      // données accumulateur
+        g_cclosure_marshal_VOID__VOID,  // marshaller (type des args)
+        G_TYPE_NONE,               // type de retour
+        0                          // nombre de paramètres
+    );
+
+
+
+    g_signal_new(
+        "fin_recuperation",              // nom du signal
+        GTK_TYPE_WIDGET,           // type GObject auquel il appartient
+        G_SIGNAL_RUN_FIRST,        // quand les handlers sont appelés
+        0,                         // offset dans la structure (0 si pas de classe)
+        NULL,                      // accumulateur (NULL = aucun)
+        NULL,                      // données accumulateur
+        g_cclosure_marshal_VOID__VOID,  // marshaller (type des args)
+        G_TYPE_NONE,               // type de retour
+        0                          // nombre de paramètres
+    );
+}
+
 void Liaison_signaux(ParserXML* Parser)
 {
     if(Parser->Signaux)
     {
+        creation_type_signaux_personnalise();
         printf("\033[1;36m====================<\033[0m\033[1;33mCONNEXION SIGNAUX\033[0m\033[1;36m>====================\033[0m\n");
         while(Parser->Signaux)
         {

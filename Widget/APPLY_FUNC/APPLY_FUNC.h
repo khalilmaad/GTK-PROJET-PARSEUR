@@ -93,4 +93,10 @@ void apply_attribut_comboboxtext(Widget* obj);
 
 void apply_attribut_separator(Widget* obj);
 
+void apply_attribut_filechooserdialog(Widget* obj);
+
+void apply_attribut_simulation(Widget* obj);
+
+void apply_attribut_poisson(Widget* obj);
+
 #endif // APPLY_FUNC_H_INCLUDED

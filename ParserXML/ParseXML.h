@@ -71,6 +71,10 @@ void gerer_widget_with_id(ParserXML* Parser, Widget* obj,int numligne);
 void Liaison_signaux(ParserXML* Parser);
 
 
+void maximizer_fenetre(GtkWidget* widget,gpointer data);
+
+void exec_main_quit(GtkWidget* widget,gpointer data);
+
 void afficher(GtkWidget*, gpointer);
 
 void cacher(GtkWidget*, gpointer);
@@ -80,6 +84,8 @@ void afficher_cacher(GtkWidget* widget,gpointer data);
 void detruire(GtkWidget*, gpointer);
 
 void modifier(GtkWidget*, gpointer);
+
+void modifier_simplement(GtkWidget* widget,gpointer data);
 
 void recuper_modifier(GtkWidget* widget,gpointer data);
 
@@ -99,6 +105,7 @@ void modifier_police(GtkWidget* widget, gpointer data);
 
 void recuper_modifier_avec_filechooser(GtkWidget* widget, gpointer data);
 
+gboolean exec_main_quit_avec_event(GtkWidget* widget,GdkEvent *event,gpointer data);
 
 gboolean afficher_avec_event(GtkWidget*,GdkEvent*, gpointer);
 
@@ -114,4 +121,7 @@ gboolean cacher_avec_event_animation(GtkWidget* widget,GdkEvent *event,gpointer 
 
 gboolean afficher_cacher_avec_event_animation(GtkWidget* widget,GdkEvent *event,gpointer data);
 
+
+
+void recuperer_modifier_avec_filechooserdialog(GtkDialog *dialog, gint response_id, gpointer data);
 #endif // PARSEXML_H_INCLUDED

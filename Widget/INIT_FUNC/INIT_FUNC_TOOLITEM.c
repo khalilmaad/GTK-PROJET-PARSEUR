@@ -6,12 +6,15 @@
 
 void init_toolitem(Widget* obj)
 {
-    obj->Widget_Ptr = GTK_WIDGET(gtk_tool_button_new(NULL, "Nouveau"));
+    obj->Widget_Ptr = GTK_WIDGET(gtk_tool_button_new(NULL, NULL));
 
     Attributs tableau_attribut[] =
     {
         {"label",             strdup("")},
+        {"tooltip",             strdup("")},
         {"icone",             strdup("")},
+        {"type_icone",         strdup("false")},
+        {"type_icone_anim",    strdup("false")},
         {"couleur_fond",       strdup("")},
         {"coin_arrondi",       strdup("")},
         {"margin",             strdup("")},
@@ -43,4 +46,5 @@ void init_toolitem(Widget* obj)
 
     // Copier les attributs
     memcpy(obj->List_Attribut, tableau_attribut, obj->Nbre_Attribut * sizeof(Attributs));
+    memcpy(obj->List_widget_enfant, tableau_enfant, obj->Nbre_enfant * sizeof(char**));
 }

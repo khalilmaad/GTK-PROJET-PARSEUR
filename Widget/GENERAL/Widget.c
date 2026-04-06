@@ -83,10 +83,15 @@ static struct {
     {"headerbar",          init_header_bar       },  // GtkHeaderBar
     {"infobar",            init_infobar          },  // GtkInfoBar
     {"searchbar",          init_searchbar        },  // GtkSearchBar
-
+    // ── Autre  ──────────────────────────────────────────────
+    {"drawingarea",          init_drawingarea        },
+    // ── Dialog  ──────────────────────────────────────────────
+    {"filechooserdialog",          init_filechooserdialog        },
     // ── Elements spéciaux (non-GTK) ───────────────────────────────────
     {"option",             init_option           },  // Option combobox (interne)
     {"signal",             init_signal           },  // Balise signal (interne)
+    {"simulation",         init_simulation          },
+    {"poisson",            init_poisson          },
 };
 
 /*
@@ -117,9 +122,9 @@ void init_general(Widget* obj)
         {"pos_y", strdup("")},         // Fixed Y
         {"nombre_colonne", strdup("")},
         {"nombre_ligne", strdup("")},
-        {"page_titre", strdup("Nouvelle page")},
-        {"page_detachable", strdup("true")},
-        {"page_reorderable", strdup("true")},
+        {"page_titre", strdup("")},
+        {"page_detachable", strdup("")},
+        {"page_reorderable", strdup("")},
     };
 
     //Allocation dynamique

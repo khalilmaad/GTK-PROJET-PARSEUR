@@ -45,4 +45,5 @@ void init_check_button(Widget* obj)
 
     // Copier les attributs
     memcpy(obj->List_Attribut, tableau_attribut, obj->Nbre_Attribut * sizeof(Attributs));
+    memcpy(obj->List_widget_enfant, tableau_enfant, obj->Nbre_enfant * sizeof(char*));
 }

@@ -2,6 +2,49 @@
 #include "../GENERAL/Widget.h"
 
 
+typedef struct
+{
+    GtkImage               *image;
+    GdkPixbufAnimation     *anim;
+    GdkPixbufAnimationIter *iter;
+    int                     largeur;
+    int                     hauteur;
+} AnimData;
+
+gboolean update_frame(gpointer data)
+{
+    AnimData *ad = data;
+
+    /* Avancer d'un frame */
+    GTimeVal tv;
+    g_get_current_time(&tv);
+    gdk_pixbuf_animation_iter_advance(ad->iter, &tv);
+
+    /* Récupérer et scaler la frame courante */
+    GdkPixbuf *frame       = gdk_pixbuf_animation_iter_get_pixbuf(ad->iter);
+    GdkPixbuf *frame_redim = gdk_pixbuf_scale_simple(frame,
+                             ad->largeur,
+                             ad->hauteur,
+                             GDK_INTERP_BILINEAR);
+
+    if (ad->image != NULL && GTK_IS_IMAGE(ad->image))
+    {
+        gtk_image_set_from_pixbuf(ad->image, frame_redim);
+    }
+
+
+    g_object_unref(frame_redim);
+
+    /* Récupérer le délai de la prochaine frame */
+    int delay = gdk_pixbuf_animation_iter_get_delay_time(ad->iter);
+    if (delay < 0) delay = 100; /* délai par défaut si non spécifié */
+
+    /* Replanifier avec le bon délai */
+    g_timeout_add(delay, update_frame, ad);
+
+    return FALSE; /* FALSE = ne pas répéter, on gère nous-mêmes */
+}
+
 void apply_attribut_toolitem(Widget* obj)
 {
     GtkToolButton* toolitem = GTK_TOOL_BUTTON(obj->Widget_Ptr);
@@ -13,12 +56,49 @@ void apply_attribut_toolitem(Widget* obj)
         gtk_tool_button_set_label(toolitem, label);
     }
 
+    const char* tooltip = get_attribut("tooltip", obj);
+    if (tooltip != NULL)
+    {
+        gtk_widget_set_tooltip_text(GTK_WIDGET(toolitem), tooltip);
+    }
+
+    const char* type_icone = get_attribut("type_icone", obj);
+    const char* type_icone_anim = get_attribut("type_icone_anim", obj);
     const char* icone = get_attribut("icone", obj);
-    if (icone != NULL)
+    if (icone != NULL && type_icone != NULL && type_icone_anim != NULL)
     {
         GtkWidget *image;
-        image = gtk_image_new_from_icon_name(icone,
-                                             GTK_ICON_SIZE_LARGE_TOOLBAR);
+        if(to_bool(type_icone))
+            image = gtk_image_new_from_icon_name(icone,GTK_ICON_SIZE_LARGE_TOOLBAR);
+        else
+        {
+            if(to_bool(type_icone_anim))
+            {
+                /* Au démarrage */
+                AnimData *ad    = g_new0(AnimData, 1);
+                ad->anim        = gdk_pixbuf_animation_new_from_file(icone, NULL);
+                ad->iter        = gdk_pixbuf_animation_get_iter(ad->anim, NULL);
+                ad->largeur     = 42;
+                ad->hauteur     = 42;
+
+                image = gtk_image_new();
+                ad->image        = GTK_IMAGE(image);
+
+                /* Lancer la boucle d'animation */
+
+
+
+
+
+                int delay = gdk_pixbuf_animation_iter_get_delay_time(ad->iter);
+                g_timeout_add(delay, update_frame, ad);
+            }
+            else
+            {
+                image = gtk_image_new_from_file(icone);
+            }
+        }
+
 
         gtk_tool_button_set_icon_widget(toolitem, image);
         gtk_widget_show(image);  // important

@@ -12,6 +12,13 @@ void apply_attribut_comboboxtext(Widget* obj)
         gtk_combo_box_set_active(combobox, string_to_long("selection",selection));
     }
 
+    const char* largeur_entry = get_attribut("largeur_entry", obj);
+    if (largeur_entry)
+    {
+        GtkWidget *entry = gtk_bin_get_child(GTK_BIN(obj->Widget_Ptr));
+        gtk_entry_set_width_chars(GTK_ENTRY(entry), string_to_long("largeur_entry",largeur_entry));
+    }
+
     const char* couleur_fond = get_attribut("couleur_fond", obj);
     if (couleur_fond != NULL)
     {
