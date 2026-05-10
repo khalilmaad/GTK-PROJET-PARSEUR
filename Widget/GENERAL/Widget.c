@@ -106,6 +106,7 @@ void init_general(Widget* obj)
     obj->Widget_Ptr = NULL;    // Pointeur vers widget GTK réel
     obj->fils = obj->frere = NULL; // Structure arbre (child / sibling)
 
+    obj->add_attribut = attributs_add;
     /*
      * Attributs spéciaux génériques applicables à plusieurs widgets
      * Ex: position dans certains containers, marge, comportement notebook, etc.

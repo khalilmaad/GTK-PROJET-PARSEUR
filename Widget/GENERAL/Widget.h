@@ -65,6 +65,8 @@ typedef struct wd
      * Pointeurs de fonctions pour comportement dynamique :
      */
 
+    void (*add_attribut)(struct wd*, const char* nom, const char* valeur);
+
     void (*apply_attribut_func)(struct wd*);
     // Fonction appliquant les attributs au widget GTK réel
 
@@ -78,6 +80,21 @@ typedef struct
     const char* nom;
     float position;
 }mapping_value;
+
+typedef struct sgl
+{
+    char* ID;
+    int numligne;
+    Widget* obj;
+    struct sgl* svt;
+}Gestion_Signaux;
+
+
+typedef struct lsgl
+{
+    Gestion_Signaux* Signaux;
+    Gestion_Signaux* Widget_with_ID;
+}Liste_Gestion_Signaux;
 
 
 /*
@@ -103,6 +120,8 @@ _Bool Attribut_existe(const char*, Widget* );
  */
 _Bool to_bool (const char*);
 
+void attributs_add(Widget* obj, const char* nom, const char* valeur);
+
 void print_succes_liaison(const char* Nom_parent);
 
 void print_succes_liaison_signal(const char* Nom_parent);
@@ -120,5 +139,6 @@ void print_error_mapping_value(const char* nom_attribut,mapping_value* tab);
 void print_message_error_liaison(const char* message);
 
 void print_error_mapping_liaison(Widget* pere,Widget* fils);
+
 
 #endif // WIDGET_H_INCLUDED

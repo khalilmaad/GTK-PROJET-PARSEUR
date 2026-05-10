@@ -7,6 +7,12 @@ _Bool Controle_parente( Widget* pere, Widget* fils)
     for(int ind = 0; ind < pere->Nbre_enfant; ind++)
     {
         if(!compare(pere->List_widget_enfant[ind],fils->Nom)){
+
+            fils->frere = pere->fils;
+            pere->fils = fils;
+
+            if(!compare(pere->Nom,"signal")) return FALSE;
+
             if(compare(fils->Nom,"signal") != 0)
             {
                 return TRUE;

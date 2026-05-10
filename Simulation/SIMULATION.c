@@ -6,6 +6,7 @@ Widget* old_sim = NULL;
 Widget* new_sim = NULL;
 
 pthread_mutex_t sim_mutex = PTHREAD_MUTEX_INITIALIZER;
+guint timer_id = -1;
 
 Fish    *selected_fish    = NULL;
 int      selected_species = -1;
@@ -39,8 +40,12 @@ List_predators* predators = NULL;
 
 _Bool file_name_equals(const char* file1,const char* file2)
 {
+    printf("\nICI\n");
+
     char* filename1 = strrchr(file1, '\\') + 1;
     char* filename2 = strrchr(file2, '\\') + 1;
+
+
 
     if(!strcmp(filename1,filename2)) return TRUE;
 

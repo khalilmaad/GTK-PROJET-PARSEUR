@@ -163,6 +163,7 @@ extern Widget* new_sim;
 
 // Mutex unique protégeant fishes, predators, old_sim, new_sim
 extern pthread_mutex_t sim_mutex;
+extern guint timer_id;
 
 extern Fish    *selected_fish    ;
 extern int      selected_species ;

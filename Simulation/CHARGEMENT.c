@@ -42,6 +42,10 @@ void* Lancer_chargement(void* data)
     predators = NULL;
 
     pthread_mutex_unlock(&sim_mutex);
+    if(timer_id > 0)
+    {
+        if(g_source_remove(timer_id)) timer_id = -1;
+    }
 
     ParserXML* Parseur = parser_create(obj->filename);
     Parseur->parse(Parseur);

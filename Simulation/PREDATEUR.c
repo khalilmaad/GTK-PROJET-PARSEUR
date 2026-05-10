@@ -15,7 +15,7 @@ void set_predator_specie(Predator* obj,char* img)
     }
 
     obj->sprite = gdk_pixbuf_new_from_file(img,   NULL);
-    predator_img[nbr_fish_species] = img;
+    predator_img[nbr_fish_species] = strdup(img);
     nbr_fish_species++;
 }
 

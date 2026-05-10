@@ -8,6 +8,7 @@
 
 //forward declaration
 typedef struct wd Widget;
+typedef struct lsgl Liste_Gestion_Signaux;
 
 // Structure pour la pile de widgets
 typedef struct StackNode {
@@ -15,13 +16,7 @@ typedef struct StackNode {
     struct StackNode* next;
 } StackNode;
 
-typedef struct sgl
-{
-    char* ID;
-    int numligne;
-    Widget* obj;
-    struct sgl* svt;
-}Gestion_Signaux;
+
 
 // Structure principale du parser
 typedef struct pxml
@@ -29,9 +24,9 @@ typedef struct pxml
     FILE* Fichier;
     Widget* racine;
     StackNode* pile_widget;  // Pile pour suivre la hiérarchie
-    Gestion_Signaux* Signaux;
-    Gestion_Signaux* Widget_with_ID;
-
+    //Gestion_Signaux* Signaux;
+    //Gestion_Signaux* Widget_with_ID;
+    Liste_Gestion_Signaux* List_Widget_Signaux;
     void (*parse)(struct pxml*);
 }ParserXML;
 
@@ -65,10 +60,11 @@ void attributs_add(Widget* obj, const char* nom, const char* valeur);
 
 
 // Fonctions pour la gestions des signaux
+Liste_Gestion_Signaux* init_Liste_Gestion_Signaux();
 
-void gerer_widget_with_id(ParserXML* Parser, Widget* obj,int numligne);
+void gerer_widget_with_id(Liste_Gestion_Signaux* Liste, Widget* obj,int numligne);
 
-void Liaison_signaux(ParserXML* Parser);
+void Liaison_signaux(Liste_Gestion_Signaux* Liste);
 
 
 void maximizer_fenetre(GtkWidget* widget,gpointer data);

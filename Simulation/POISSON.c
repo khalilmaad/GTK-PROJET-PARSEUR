@@ -6,6 +6,9 @@ void set_fish_specie(Fish* obj,char* img)
     for(int i = 0; i < nbr_fish_species; i++)
     {
 
+
+        if(!fish_species[i]) printf("\n NON ICI\n");
+
         if(file_name_equals(fish_species[i],img))
         {
 
@@ -17,7 +20,7 @@ void set_fish_specie(Fish* obj,char* img)
 
     obj->species = nbr_fish_species;
     obj->sprite = gdk_pixbuf_new_from_file(img,   NULL);
-    fish_species[nbr_fish_species] = img;
+    fish_species[nbr_fish_species] = strdup(img);
     nbr_fish_species++;
 }
 
@@ -34,7 +37,10 @@ void init_fish(Widget* obj_ptr,_Bool pos_auto,int x, int y,char* img_path)
     obj_fish->opacity = 1.0;
     obj_fish->selected = FALSE;
 
+
+
     set_fish_specie(obj_fish,img_path);
+
 
     obj_fish->stamina = 1.0;
     obj_fish->vx = randf(-1, 1);

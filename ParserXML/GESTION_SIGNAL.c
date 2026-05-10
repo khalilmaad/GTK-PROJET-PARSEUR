@@ -34,15 +34,15 @@ static struct
     {"recuperer_modifier_avec_filechooserdialog",NULL,NULL,recuperer_modifier_avec_filechooserdialog},
 };
 
-void gerer_widget_with_id(ParserXML* Parser, Widget* obj,int numligne)
+void gerer_widget_with_id(Liste_Gestion_Signaux* Liste, Widget* obj,int numligne)
 {
     if(!compare(obj->Nom,"signal"))
     {
         Gestion_Signaux* signaux = (Gestion_Signaux*)malloc(sizeof(Gestion_Signaux));
         signaux->numligne = numligne;
         signaux->obj = obj;
-        signaux->svt = Parser->Signaux;
-        Parser->Signaux = signaux;
+        signaux->svt = Liste->Signaux;
+        Liste->Signaux = signaux;
 
         return;
     }
@@ -53,8 +53,8 @@ void gerer_widget_with_id(ParserXML* Parser, Widget* obj,int numligne)
         signaux->ID = obj->Id;
         signaux->numligne = numligne;
         signaux->obj = obj;
-        signaux->svt = Parser->Widget_with_ID;
-        Parser->Widget_with_ID = signaux;
+        signaux->svt = Liste->Widget_with_ID;
+        Liste->Widget_with_ID = signaux;
 
         return;
     }
@@ -269,45 +269,45 @@ void creation_type_signaux_personnalise()
     );
 }
 
-void Liaison_signaux(ParserXML* Parser)
+void Liaison_signaux(Liste_Gestion_Signaux* Liste)
 {
-    if(Parser->Signaux)
+    if(Liste->Signaux)
     {
         creation_type_signaux_personnalise();
         printf("\033[1;36m====================<\033[0m\033[1;33mCONNEXION SIGNAUX\033[0m\033[1;36m>====================\033[0m\n");
-        while(Parser->Signaux)
+        while(Liste->Signaux)
         {
-            if(Parser->Signaux->obj->fils)
+            if(Liste->Signaux->obj->fils)
             {
 
-                appliquer_signal(Parser->Signaux->obj);
+                appliquer_signal(Liste->Signaux->obj);
             }
             else
             {
-                const char* Sible_signal = get_attribut("sible",Parser->Signaux->obj);
+                const char* Sible_signal = get_attribut("sible",Liste->Signaux->obj);
                 if(Sible_signal)
                 {
-                    Gestion_Signaux* crt = Parser->Widget_with_ID;
+                    Gestion_Signaux* crt = Liste->Widget_with_ID;
                     while(crt)
                     {
                         if(!compare(crt->ID,Sible_signal) && crt->obj)
                         {
 
-                            Parser->Signaux->obj->fils = crt->obj;
-                            appliquer_signal(Parser->Signaux->obj);
+                            Liste->Signaux->obj->fils = crt->obj;
+                            appliquer_signal(Liste->Signaux->obj);
                             goto suite;
                         }
                         crt = crt->svt;
                     }
-                    printf("\n\033[1;31m[Liaison Signal]\033[0m sible choisi est introuvable(verifier ID sible designant le widget) pour le signal ligne=\033[1;34m%d\033[0m",Parser->Signaux->numligne);
+                    printf("\n\033[1;31m[Liaison Signal]\033[0m sible choisi est introuvable(verifier ID sible designant le widget) pour le signal ligne=\033[1;34m%d\033[0m",Liste->Signaux->numligne);
                 }
                 else
                 {
-                    printf("\n\033[1;31m[Liaison Signal]\033[0m absence de sible pour le signal ligne=\033[1;34m%d\033[0m",Parser->Signaux->numligne);
+                    printf("\n\033[1;31m[Liaison Signal]\033[0m absence de sible pour le signal ligne=\033[1;34m%d\033[0m",Liste->Signaux->numligne);
                 }
             }
 suite:
-            Parser->Signaux = Parser->Signaux->svt;
+            Liste->Signaux = Liste->Signaux->svt;
         }
         printf("\n\n\033[1;36m====================<\033[0m\033[1;33mFIN CONNEXION SIGNAUX\033[0m\033[1;36m>====================\033[0m\n");
     }

@@ -7,8 +7,9 @@
 *.txt
 *.pdf
 *.docx
+*.cscope_file_list
 rapport/
 build/
 image/
 bin/
-obj/
+

@@ -18,12 +18,26 @@ ParserXML* parser_create(const char* nomFichier) {
     }
     parser->racine = NULL;
     parser->pile_widget = NULL;
-    parser->Signaux = NULL;
-    parser->Widget_with_ID = NULL;
+    parser->List_Widget_Signaux = init_Liste_Gestion_Signaux();
 
     parser->parse = parser_parse;
 
     return parser;
+}
+
+Liste_Gestion_Signaux* init_Liste_Gestion_Signaux()
+{
+    Liste_Gestion_Signaux* Liste;
+    Liste = (Liste_Gestion_Signaux*)malloc(sizeof(Liste_Gestion_Signaux));
+
+    if(!Liste)
+    {
+        printf("init_Liste_Gestion_Signaux |Erreur allocation memoire");
+        exit(-1);
+    }
+    Liste->Signaux = NULL;
+    Liste->Widget_with_ID = NULL;
+    return Liste;
 }
 
 /*
@@ -93,7 +107,7 @@ void parser_parse(ParserXML* parser) {
     }
 
     fclose(parser->Fichier);
-    Liaison_signaux(parser);
+    Liaison_signaux(parser->List_Widget_Signaux);
 
     // Vérifier les balises non fermées
     if (!pile_empty(parser)) {
@@ -221,8 +235,8 @@ void traiterBaliseOuvrante(ParserXML* parser, const char* ligne, size_t* pos, in
         Widget* parent = pile_top(parser);
         if(parent->set_child) parent->set_child(parent,widget);
 
-        widget->frere = parent->fils;
-        parent->fils = widget;
+        /*widget->frere = parent->fils;
+        parent->fils = widget;*/
 
     } else {
         if (!parser->racine) {
@@ -241,7 +255,7 @@ void traiterBaliseOuvrante(ParserXML* parser, const char* ligne, size_t* pos, in
         pile_push(parser, widget);
     }
 
-    gerer_widget_with_id(parser,widget,numLigne);
+    gerer_widget_with_id(parser->List_Widget_Signaux,widget,numLigne);
 
     suivant:
 

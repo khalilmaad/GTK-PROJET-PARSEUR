@@ -2,11 +2,13 @@
 #include "../ParserXML/ParseXML.h"
 #include "../Widget/GENERAL/Widget.h"
 #include "../Simulation/SIMULATION.h"
+#include "../Interface_macro/INTERFACE_MACRO.h"
 
 Widget* Racine_node;
 
-void AppGTK_afficher_interface(Widget* arb)
+void AppGTK_afficher_interface(gpointer data)
 {
+    Widget* arb = (Widget*)data;
     if(arb) gtk_widget_show_all(arb->Widget_Ptr);
     if(arb->frere) AppGTK_afficher_interface(arb->frere);
 }
@@ -30,6 +32,7 @@ AppGTK* init_APP(int argc, char* argv[])
     monAPP->parsing = AppGTK_Resultat_Parsing;
     monAPP->boucle = AppGTK_boucle;
     monAPP->afficher_interface = AppGTK_afficher_interface;
+    monAPP->create_with_macro = AppGTK_Resultat_with_macro;
 
     return monAPP;
 
@@ -93,7 +96,9 @@ void AppGTK_debut_chargement(AppGTK* monAPP)
 void AppGTK_fin_chargement(gpointer data)
 {
     AppGTK* monAPP = (AppGTK*)data;
+    if(monAPP->FenetreChargement)
     gtk_widget_destroy(monAPP->FenetreChargement);
+    monAPP->FenetreChargement = NULL;
 }
 
 
@@ -112,6 +117,21 @@ static void* parsing_thread_func(void* data)
 
     // Une fois terminé, fermer la fenêtre de chargement dans le thread GTK principal
     g_idle_add((GSourceFunc)AppGTK_fin_chargement, monAPP);
+    g_idle_add((GSourceFunc)monAPP->afficher_interface, monAPP->arbre_widget);
+
+    return NULL;
+}
+
+static void* realisation_with_macro_thread_func(void* data)
+{
+     AppGTK* monAPP = (AppGTK*)data;
+
+    // Créer le parser et parser le fichier
+    Widget* racine = creation_interface();
+
+    // Une fois terminé, fermer la fenêtre de chargement dans le thread GTK principal
+    g_idle_add((GSourceFunc)AppGTK_fin_chargement, monAPP);
+    g_idle_add((GSourceFunc)monAPP->afficher_interface, racine);
 
     return NULL;
 }
@@ -132,7 +152,26 @@ void AppGTK_Resultat_Parsing(AppGTK* monAPP,const char* nomfichier)
     pthread_detach(parsing_thread);
 
     // Lancer la boucle GTK
-    AppGTK_boucle();
+    //AppGTK_boucle();
+
+    return;
+}
+
+// Fonction principale
+void AppGTK_Resultat_with_macro(AppGTK* monAPP)
+{
+    pthread_t parsing_thread;
+
+    // Créer et lancer le thread
+    if (pthread_create(&parsing_thread, NULL, realisation_with_macro_thread_func, (void*)monAPP) != 0) {
+        return;
+    }
+
+    // Détacher le thread pour qu'il tourne en arrière-plan
+    pthread_detach(parsing_thread);
+
+    // Lancer la boucle GTK
+    //AppGTK_boucle();
 
     return;
 }

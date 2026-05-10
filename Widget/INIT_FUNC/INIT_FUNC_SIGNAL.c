@@ -27,7 +27,7 @@ void init_signal(Widget* obj)
     obj->List_widget_enfant =(char**) malloc(obj->Nbre_enfant * sizeof(char*));
 
     obj->apply_attribut_func = NULL;
-    obj->set_child = NULL;
+    obj->set_child = set_child_default;
 
     memcpy(obj->List_Attribut, tableau_attribut, obj->Nbre_Attribut * sizeof(Attributs));
     memcpy(obj->List_widget_enfant, tableau_enfant, obj->Nbre_enfant * sizeof(char*));

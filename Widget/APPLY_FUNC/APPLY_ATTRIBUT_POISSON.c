@@ -16,6 +16,8 @@ void apply_attribut_poisson(Widget* obj)
     int y = string_to_long("y",y_str);
 
 
+
+
     if(!to_bool(predator_str))
     {
         init_fish(obj,pos_auto,x,y,icone_espece);

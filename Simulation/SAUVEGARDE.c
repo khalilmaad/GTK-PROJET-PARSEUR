@@ -155,7 +155,9 @@ void preparer_struct_sauvegarde()
         Fish* obj_fish = crt->elem;
 
         attributs_add(obj,"pos_aleatoire","false");
+        printf("\n index: %d , str: %s",obj_fish->species,fish_species[obj_fish->species]);
         attributs_add(obj,"icone_espece",fish_species[obj_fish->species]);
+
 
         char bufferX[20];           // espace temporaire
         char bufferY[20];           // espace temporaire
@@ -199,7 +201,11 @@ void* Enreigistrement_Fichier(void* data)
 
     g_signal_emit_by_name(objets->emetteur_signal_sauvegarde, "debut_sauvegarde");
 
+    pthread_mutex_lock(&sim_mutex);
+
     preparer_struct_sauvegarde();
+
+    pthread_mutex_unlock(&sim_mutex);
 
     ecrire_dans_fichier(file, objets->racine_arbre,nbre);
 
