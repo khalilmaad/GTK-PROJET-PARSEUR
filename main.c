@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
 
     monAPP->debut_chargement(monAPP);
     monAPP->parsing(monAPP,"Preparation_controle.txt");
-    monAPP->create_with_macro(monAPP);
+    //monAPP->create_with_macro(monAPP);
     monAPP->boucle();
     monAPP->boucle();
 
